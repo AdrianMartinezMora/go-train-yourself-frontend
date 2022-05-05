@@ -9,18 +9,14 @@ import { NavigationComponent } from './components/navigation/navigation.componen
 import { ProdFormComponent } from './components/prod-form/prod-form.component';
 import { ProdListComponent } from './components/prod-list/prod-list.component';
 
-import {ProductsService} from './services/products.service';
-import { NavigationAdminComponent } from './components/navigation-admin/navigation-admin.component';
-import { NavigationRegistredComponent } from './components/navigation-registred/navigation-registred.component'
+import {ProductsService} from './services/products.service'
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     ProdFormComponent,
-    ProdListComponent,
-    NavigationAdminComponent,
-    NavigationRegistredComponent
+    ProdListComponent
   ],
   imports: [
     BrowserModule,

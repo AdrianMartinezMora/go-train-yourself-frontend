@@ -1,32 +1,33 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <div class="container-fluid">
-        <a class="navbar-brand" routerLink="/">
-            <img src="../../../assets/Images/Logo.png" alt="Go Train Yourself" width="150" height="50">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">
+      <img src="../../../assets/Images/Logo.png" alt="Go Train Yourself" width="150" height="50">
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item dropdown" (mouseleave)="showProducts = false" (mouseover)="showProducts = true">
-                    <a class="nav-link dropdown-toggle" routerLink="/productos" routerLinkActive="active" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item dropdown" (mouseleave)="showProducts = false" (mouseover)="showProducts = true">
+          <a class="nav-link dropdown-toggle" routerLink="/productos" routerLinkActive="active" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Productos
           </a>
-                    <ul class="dropdown-menu" [ngClass]="{ 'show': showProducts }" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item " routerLink="/productos" (click)="showProducts = false">Ver Todo</a></li>
-                        <li><a class="dropdown-item " routerLink="/productos/add" (click)="showProducts = false">Añadir Producto</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item dropdown" (mouseleave)="showUsers = false" (mouseover)="showUsers = true">
-                    <a class="nav-link dropdown-toggle" routerLink="/productos" routerLinkActive="active" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <ul class="dropdown-menu" [ngClass]="{ 'show': showProducts }" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item " routerLink="/productos" (click)="showProducts = false">Ver Todo</a></li>
+            <li><a class="dropdown-item " routerLink="/productos/add" (click)="showProducts = false">Añadir Producto</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown" (mouseleave)="showUsers = false" (mouseover)="showUsers = true">
+          <a class="nav-link dropdown-toggle" routerLink="/productos" routerLinkActive="active" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Usuarios
           </a>
-                    <ul class="dropdown-menu" [ngClass]="{ 'show': showUsers }" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item " routerLink="/productos" (click)="showUsers = false">Ver Todo</a></li>
-                        <li><a class="dropdown-item " routerLink="/productos/add" (click)="showUsers = false">Añadir Usuario</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
+          <ul class="dropdown-menu" [ngClass]="{ 'show': showUsers }" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item " routerLink="/productos" (click)="showUsers = false">Ver Todo</a></li>
+            <li><a class="dropdown-item " routerLink="/productos/add" (click)="showUsers = false">Añadir Usuario</a></li>
+          </ul>
+        </li>
+      </ul>
     </div>
+  </div>
 </nav>
