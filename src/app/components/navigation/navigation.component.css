@@ -1,0 +1,11 @@
+.navbar .navbar-nav .dropdown-item:hover {
+    background-color: #55595c;
+    color: white;
+    font-weight: 500;
+  }  
+
+  .navbar .navbar-nav .dropdown-item {
+    color: black;
+  }  
+
+  
