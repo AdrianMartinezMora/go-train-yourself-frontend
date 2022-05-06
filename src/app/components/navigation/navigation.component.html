@@ -8,12 +8,18 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li *ngFor="let menu of menus" class="nav-item dropdown" (mouseleave)="menu.visible = false" (mouseover)="menu.visible = true">
-                    <a class="nav-link dropdown-toggle" routerLink="{{menu.link}}" routerLinkActive="active" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <li *ngFor="let menu of menuSrv.getMenu" class="nav-item dropdown" (mouseleave)="menu.visible = false" (mouseover)="menu.visible = true">
+                    <a class="nav-link dropdown-toggle" [ngClass]="{ 'dropdown-toggle': menu.children }" 
+                    id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                     (click)="changeProd(menu.id)">
                       {{menu.name}}
                     </a>
-                    <ul class="dropdown-menu" [ngClass]="{ 'show': menu.visible }" aria-labelledby="navbarDropdown">
-                        <li *ngFor="let subMenu of menu.children"><a class="dropdown-item " routerLink="{{subMenu.link}}" (click)="menu.visible = false">{{subMenu.name}}</a></li>
+                    <ul *ngIf="menu.children" class="dropdown-menu" [ngClass]="{ 'show': menu.visible }" aria-labelledby="navbarDropdown">
+                        <li *ngFor="let subMenu of menu.children">
+                            <a class="dropdown-item " routerLink="{{subMenu.link}}" (click)="menu.visible = false; changeProd(subMenu.id) " >
+                                {{subMenu.nombre}}
+                            </a>
+                        </li>
                     </ul>
                 </li>
             </ul>

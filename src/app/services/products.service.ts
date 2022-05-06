@@ -14,6 +14,10 @@ export class ProductsService {
   getProducts(){
     return this.http.get(`${this.API_URI}/productos/`)
   }
+  
+  getProductsbyCategoria(idCat: number){
+    return this.http.get(`${this.API_URI}/productos/catMenu/${idCat}`)
+  }
 
   getCategories(){
     return this.http.get(`${this.API_URI}/productos/cat`)

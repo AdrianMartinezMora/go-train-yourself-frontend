@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, HostBinding, OnInit, Input } from '@angular/core';
 import Swal from 'sweetalert2'
 
 import { ProductsService } from '../../services/products.service'
@@ -11,17 +11,12 @@ export class ProdListComponent implements OnInit {
 
   @HostBinding('class') classes = 'row';
 
-  productos: any = []
+  @Input() productos: any = []
 
   constructor(private prodService: ProductsService) { }
 
   ngOnInit(): void {
-    this.prodService.getProducts().subscribe(
-      res => {
-        this.productos = res
-      },
-      err => console.error(err)
-    );
+    
   }
 
   deleteProduct(idProduct: number) {

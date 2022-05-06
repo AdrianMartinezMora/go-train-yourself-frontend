@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MenuService } from 'src/app/services/menu.service';
+import { ProductsService } from 'src/app/services/products.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import Swal from 'sweetalert2';
 
@@ -9,30 +11,29 @@ import Swal from 'sweetalert2';
 })
 export class NavigationComponent implements OnInit {
 
-  menus: any[] = [];
+  productos: any = []
 
-  menusAdmin: any[] = [
-    {
-      name: "Productos",
-      link: "/productos",
-      visible: false,
-      children: [
-        {
-          name: "Ver todos",
-          link: "/productos"
-        },
-        {
-          name: "Crear Producto",
-          link: "/productos/add"
-        }
-      ]
-    }
-  ];
+  constructor(
+    private usuarioSrv: UsuariosService,
+    public menuSrv: MenuService,
+    private productSrv: ProductsService) {
 
-  constructor(private usuarioSrv: UsuariosService) { }
+   }
 
   ngOnInit(): void {
-    this.menus = this.menusAdmin;
+  }
+
+  changeProd(id:any){
+
+    this.productSrv.getProductsbyCategoria(id).subscribe(
+      res => {
+        this.productos = res
+        console.log(this.productos)
+      },
+      err => console.error(err)
+    );
+    
+
   }
 
   doLogin(){
@@ -47,5 +48,6 @@ export class NavigationComponent implements OnInit {
       Swal.fire({title: error.error,  icon: 'error'});
     });
   }
+
 
 }
