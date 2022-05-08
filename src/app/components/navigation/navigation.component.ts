@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Menu from 'src/app/models/Menu';
 import { MenuService } from 'src/app/services/menu.service';
 import { ProductsService } from 'src/app/services/products.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
@@ -11,29 +12,18 @@ import Swal from 'sweetalert2';
 })
 export class NavigationComponent implements OnInit {
 
-  productos: any = []
+  menus: Menu[] = [];
 
   constructor(
     private usuarioSrv: UsuariosService,
-    public menuSrv: MenuService,
-    private productSrv: ProductsService) {
-
+    public menuSrv: MenuService) {
    }
 
   ngOnInit(): void {
-  }
-
-  changeProd(id:any){
-
-    this.productSrv.getProductsbyCategoria(id).subscribe(
-      res => {
-        this.productos = res
-        console.log(this.productos)
-      },
-      err => console.error(err)
-    );
-    
-
+    this.menuSrv.loadMenu();
+    this.menuSrv.getMenu.subscribe(menus => {
+      this.menus = menus;
+    });
   }
 
   doLogin(){

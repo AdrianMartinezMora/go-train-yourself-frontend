@@ -3,6 +3,7 @@ import {HttpClient} from '@angular/common/http'
 import { environment } from 'src/environments/environment';
 
 import {Categoria} from '../models/Categtoria'
+import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -14,23 +15,7 @@ export class CategoriesService {
     return this.http.get(`${environment.apiUrl}/categorias/child`)
   }
 
-  getCategories(){
-    return this.http.get(`${environment.apiUrl}/productos/cat`)
-  }
-
-  getProduct(id:number){
-    return this.http.get(`${environment.apiUrl}/productos/${id}`)
-  }
-
-  deleteProduct(id:number){
-    return this.http.delete(`${environment.apiUrl}/productos/${id}`)
-  }
-
-  updateProduct(id:number, updatedProduct:Categoria) {
-    return this.http.put(`${environment.apiUrl}/productos/${id}`,updatedProduct)
-  }
-
-  saveProduct(product:Categoria){
-    return this.http.post(`${environment.apiUrl}/productos/`, product)
+  getCategories(): Observable<Categoria[]>{
+    return this.http.get<Categoria[]>(`${environment.apiUrl}/categorias`);
   }
 }

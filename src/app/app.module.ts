@@ -10,15 +10,13 @@ import { ProdFormComponent } from './components/prod-form/prod-form.component';
 import { ProdListComponent } from './components/prod-list/prod-list.component';
 
 import {ProductsService} from './services/products.service';
-import { ProductsComponent } from './components/products/products.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     ProdFormComponent,
-    ProdListComponent,
-    ProductsComponent
+    ProdListComponent
   ],
   imports: [
     BrowserModule,

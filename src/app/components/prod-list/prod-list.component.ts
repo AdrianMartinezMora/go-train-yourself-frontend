@@ -1,4 +1,5 @@
 import { Component, HostBinding, OnInit, Input } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2'
 
 import { ProductsService } from '../../services/products.service'
@@ -10,13 +11,29 @@ import { ProductsService } from '../../services/products.service'
 export class ProdListComponent implements OnInit {
 
   @HostBinding('class') classes = 'row';
+  productos: any = []
 
-  @Input() productos: any = []
-
-  constructor(private prodService: ProductsService) { }
+  constructor(
+    private prodService: ProductsService,
+    private route: ActivatedRoute
+    ) { }
 
   ngOnInit(): void {
-    
+    this.route.params.subscribe(params => {
+      let categoria = params['categoria'];
+      console.log(categoria)
+      if(categoria != undefined){
+        this.prodService.getProductsbyCategoria(categoria).subscribe(productos => this.productos = productos);
+        console.log(this.productos)
+      }else{
+        this.prodService.getProducts().subscribe(
+          res => {
+            this.productos=res
+          } 
+        )
+      }
+      
+    });
   }
 
   deleteProduct(idProduct: number) {

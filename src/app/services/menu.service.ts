@@ -1,47 +1,18 @@
 import { Injectable } from '@angular/core';
 import { CategoriesService } from 'src/app/services/categories.service';
+import { Categoria } from 'src/app/models/Categtoria';
+import { UsuariosService } from './usuarios.service';
+import { BehaviorSubject } from 'rxjs';
+import Menu from '../models/Menu';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MenuService {
-  
-  menu:any[] = [
-    {
-      id: 0,
-      name: "BOXEO",
-      link: "/productos/boxeo",
-      visible: false
-    },
-    {
-      id: 1,
-      name: "MUAI THAI",
-      link: "/productos/muai",
-      visible: false
-    },
-    {
-      id: 2,
-      name: "MMA",
-      link: "/productos/mma",
-      visible: false
-    },
-    {
-      id: 3,
-      name: "JIU-JITSU",
-      link: "/productos/jj",
-      visible: false
-    },
-    {
-      name: "Otras Categorias",
-      link: "",
-      visible: false,
-      dropdown: true,
-      children: []
-    }
 
-  ];
+  menu: BehaviorSubject<Menu[]> = new BehaviorSubject<Menu[]>([]);
 
-  menuAdmin: any[] = [
+  menuAdmin: Menu[] = [
     {
       name: "Productos",
       link: "/productos",
@@ -49,35 +20,52 @@ export class MenuService {
       children: [
         {
           name: "Ver todos",
-          link: "/productos"
+          link: "/productos",
+          visible: true
         },
         {
           name: "Crear Producto",
-          link: "/productos/add"
+          link: "/productos/add",
+          visible: true
         }
       ]
     }
   ];
 
-  catDropdown(): void {
-    this.categoriesSrv.getChildren().subscribe(
-      res => {
-        this.menu[4].children=res
-      },
-      err => console.error(err)
-    );
-  }
-
   constructor(private categoriesSrv: CategoriesService) {
-
-    this.catDropdown();
-
-
-    
-
   }
 
+  public loadMenu() {
+    //TODO: Añadir condición para cargar un menu u otro segun si el usuario ha iniciado sesión
+    this.categoriesSrv.getCategories().subscribe(categorias => {
+      let finalMenu: Menu[] = categorias.filter(c => c.primaria && c.estado).map(categoria => {
+        return this.transform(categoria);
+      });
+
+      let secundarias: Menu[] = categorias.filter(c => !c.primaria && c.estado).map(categoria => {
+        return this.transform(categoria);
+      });
+
+      finalMenu.push({
+        name: 'Otras categorias',
+        visible: false,
+        link:'',
+        children: secundarias
+      });
+
+      this.menu.next(finalMenu);
+    });
+  }
+
+  private transform(categoria: Categoria): Menu {
+    let resultado: Menu = {
+      name: categoria.nombre,
+      link: `/productos/categorias/${categoria.id}`,
+      visible: false
+    }
+    return resultado;
+  }
   public get getMenu() {
     return this.menu
-   }
+  }
 }
