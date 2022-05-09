@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Menu from 'src/app/models/Menu';
 import { MenuService } from 'src/app/services/menu.service';
-import { ProductsService } from 'src/app/services/products.service';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import Swal from 'sweetalert2';
 
