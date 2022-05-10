@@ -25,6 +25,7 @@ export class NavigationComponent implements OnInit {
     });
   }
 
+  /*
   doLogin(){
     //TODO: TOCA ESTO PERRO
     let username = 'admin';
@@ -37,6 +38,6 @@ export class NavigationComponent implements OnInit {
       Swal.fire({title: error.error,  icon: 'error'});
     });
   }
-
+*/
 
 }

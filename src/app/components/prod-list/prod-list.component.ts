@@ -1,4 +1,4 @@
-import { Component, HostBinding, OnInit, Input } from '@angular/core';
+import { Component, HostBinding, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2'
 

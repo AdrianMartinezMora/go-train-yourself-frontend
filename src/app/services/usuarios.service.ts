@@ -18,6 +18,10 @@ export class UsuariosService {
     return this.http.get(`${environment.apiUrl}/usuarios/${id}`)
   }
 
+  registerOk(nombre: string) {
+    return this.http.get(`${environment.apiUrl}/usuarios/regOk/${nombre}`)
+  }
+
   deleteUsuario(id: number) {
     return this.http.delete(`${environment.apiUrl}/usuarios/${id}`)
   }
@@ -26,7 +30,7 @@ export class UsuariosService {
     return this.http.put(`${environment.apiUrl}/usuarios/${id}`, updatedUsuario)
   }
 
-  saveUsuario(usuario: Usuario) {
+  register(usuario: Usuario) {
     return this.http.post(`${environment.apiUrl}/usuarios/`, usuario)
   }
 

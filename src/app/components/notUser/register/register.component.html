@@ -2,24 +2,36 @@
     <h3>Registrarse</h3>
     <div class="card" style="text-align:center ; font-weight: 1000;">
         <div class="card-body">
-            <form>
+            <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+
+                <div class="mb-3" style="padding-bottom: 20px ; ">
+                    <label for="registerRealname">Nombre Completo</label>
+                    <input type="text" name="realname" ngModel required #realname="ngModel" class="form-control"
+                        id="registerRealname" placeholder="Introduce nombre completo (Nombre real)" autofocus>
+                </div>
+
                 <div class="mb-3" style="padding-bottom: 20px ; ">
                     <label for="registerUsername">Nombre de Usuario</label>
-                    <input type="text" class="form-control" id="registerUsername" placeholder="Introduce nombre de usuario" autofocus>
+                    <input type="text" name="username" ngModel required #username="ngModel" class="form-control"
+                        id="registerUsername" placeholder="Introduce nombre de usuario" autofocus>
+                        <p *ngIf="usuarioExite" style="color: red;">Este nombre de usuario ya existe</p>
                 </div>
 
                 <div class="mb-3" style="padding-bottom: 20px ; ">
                     <label for="registerEmail">Correo</label>
-                    <input type="email" class="form-control" id="registerEmail" placeholder="Introduce correo electrónico">
+                    <input type="email" name="email" ngModel required #email="ngModel" class="form-control"
+                        id="registerEmail" placeholder="Introduce correo electrónico">
                 </div>
 
                 <div class="mb-3" style="padding-bottom: 20px ;">
                     <label for="loginPassword">Contraseña</label>
-                    <input type="password" class="form-control" id="loginPassword" placeholder="Contraseña">
+                    <input type="password" name="password" ngModel required #password="ngModel" class="form-control"
+                        id="loginPassword" placeholder="Contraseña">
                 </div>
 
                 <div class="d-grid gap-2">
-                    <button type="submit" class="btn btn-outline-info">Iniciar Sesión &nbsp;&nbsp;&nbsp;<i class="fas fa-sign-in-alt"></i></button>
+                    <button type="submit" [disabled]="f.invalid" class="btn btn-outline-info">Iniciar Sesión &nbsp;&nbsp;&nbsp;<i
+                            class="fas fa-sign-in-alt"></i></button>
                 </div>
             </form>
         </div>
