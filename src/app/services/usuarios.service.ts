@@ -18,8 +18,12 @@ export class UsuariosService {
     return this.http.get(`${environment.apiUrl}/usuarios/${id}`)
   }
 
-  registerOk(nombre: string) {
-    return this.http.get(`${environment.apiUrl}/usuarios/regOk/${nombre}`)
+  validUsername(nombre: string) {
+    return this.http.get(`${environment.apiUrl}/usuarios/userVal/${nombre}`)
+  }
+
+  validEmail(email: string) {
+    return this.http.get(`${environment.apiUrl}/usuarios/emailVal/${email}`)
   }
 
   deleteUsuario(id: number) {

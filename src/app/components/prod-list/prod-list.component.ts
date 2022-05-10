@@ -10,7 +10,6 @@ import { ProductsService } from '../../services/products.service'
 })
 export class ProdListComponent implements OnInit {
 
-  @HostBinding('class') classes = 'row';
   productos: any = []
 
   constructor(
@@ -21,10 +20,8 @@ export class ProdListComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       let categoria = params['categoria'];
-      console.log(categoria)
       if(categoria != undefined){
         this.prodService.getProductsbyCategoria(categoria).subscribe(productos => this.productos = productos);
-        console.log(this.productos)
       }else{
         this.prodService.getProducts().subscribe(
           res => {

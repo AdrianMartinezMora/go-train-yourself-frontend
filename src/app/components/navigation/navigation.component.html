@@ -10,7 +10,7 @@
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <div *ngFor="let menu of menus">
                     <li *ngIf="menu.link != ''" class="nav-item dropdown" (mouseleave)="menu.visible = false" (mouseover)="menu.visible = true" routerLink="{{menu.link}}">
-                        <a class="nav-link dropdown-toggle" routerLinkActive="active" [ngClass]="{ 'dropdown-toggle': menu.children }" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" routerLinkActive="active" [ngClass]="{ 'dropdown-toggle': menu.children }" id="navbarDropdown" role="button" aria-expanded="false">
                       {{menu.name}}
                     </a>
                         <ul *ngIf="menu.children" class="dropdown-menu" [ngClass]="{ 'show': menu.visible }" aria-labelledby="navbarDropdown">
@@ -22,7 +22,7 @@
                         </ul>
                     </li>
                     <li *ngIf="menu.link == ''" class="nav-item dropdown" (mouseleave)="menu.visible = false" (mouseover)="menu.visible = true">
-                        <a class="nav-link dropdown-toggle" [ngClass]="{ 'dropdown-toggle': menu.children }" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <a class="nav-link dropdown-toggle" [ngClass]="{ 'dropdown-toggle': menu.children }" id="navbarDropdown" role="button" aria-expanded="false">
                       {{menu.name}}
                     </a>
                         <ul *ngIf="menu.children" class="dropdown-menu" [ngClass]="{ 'show': menu.visible }" aria-labelledby="navbarDropdown">
@@ -53,12 +53,5 @@
 
             </ul>
         </div>
-
-
-        <!--
-        <button (click)="doLogin()">
-            LOGIN
-        </button>
-        -->
     </div>
 </nav>

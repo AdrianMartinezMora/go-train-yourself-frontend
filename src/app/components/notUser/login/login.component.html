@@ -1,20 +1,19 @@
 <div>
     <h3>Iniciar Sesión</h3>
     <div class="card" style="text-align:center ; font-weight: 1000;">
+        <p *ngIf="badUser" style="color: red;">El usuario o la contraseña son incorrectos</p>
         <div class="card-body">
             <form #f="ngForm" (ngSubmit)="onSubmit(f)">
                 <div class="mb-3" style="padding-bottom: 20px ; ">
                     <label for="loginUsername">Nombre de Usuario</label>
-                    <input type="text" name="username" ngModel required #username="ngModel" class="form-control"
-                        id="LoginUsername" placeholder="Introduce nombre de usuario" autofocus>
-                        
+                    <input type="text" name="username" ngModel required #username="ngModel" class="form-control" id="LoginUsername" placeholder="Introduce nombre de usuario" autofocus>
+
                 </div>
 
                 <div class="mb-3" style="padding-bottom: 20px ;">
                     <label for="loginPassword">Contraseña</label>
-                    <input type="password" name="password" ngModel required #password="ngModel" class="form-control"
-                        id="loginPassword" placeholder="Contraseña">
-                        
+                    <input type="password" name="password" ngModel required #password="ngModel" class="form-control" id="loginPassword" placeholder="Contraseña">
+
                 </div>
 
                 <div class="d-grid gap-2">
