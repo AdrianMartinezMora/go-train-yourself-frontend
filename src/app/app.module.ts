@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { ProdFormComponent } from './components/admin/prod-form/prod-form.component';
+import { ProdFormComponent } from './components/admin/admin-prod-form/prod-form.component';
 import { ProdListComponent } from './components/prod-list/prod-list.component';
 
 import {ProductsService} from './services/products.service';

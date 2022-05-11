@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import Menu from 'src/app/models/Menu';
 import { MenuService } from 'src/app/services/menu.service';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'app-navigation',
@@ -9,10 +11,12 @@ import { MenuService } from 'src/app/services/menu.service';
 })
 export class NavigationComponent implements OnInit {
 
+  visibleSearch:boolean=false;
+
   menus: Menu[] = [];
 
   constructor(
-    public menuSrv: MenuService) {
+    public menuSrv: MenuService,public productsSrv: ProductsService) {
    }
 
   ngOnInit(): void {
@@ -20,6 +24,18 @@ export class NavigationComponent implements OnInit {
     this.menuSrv.getMenu.subscribe(menus => {
       this.menus = menus;
     });
+  }
+
+  onSearch(f:NgForm){
+
+    this.productsSrv.getProductsbySearch(f.value.search).subscribe(
+      (resp) => {
+        console.log(resp)
+      },
+      (err)=> {
+        console.log("vaya error nene")
+      }
+    )
   }
 
 }

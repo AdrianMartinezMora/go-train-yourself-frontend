@@ -34,6 +34,18 @@
                         </ul>
                     </li>
                 </div>
+
+                <li class="nav-item dropdown" (mouseleave)="visibleSearch = false" (mouseover)="visibleSearch = true">
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" [ngClass]="{ 'active': visibleSearch }" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-magnifying-glass fa-fw fa-xl"></i>
+                    </a>
+                    <div class="dropdown-menu" [ngClass]="{ 'show': visibleSearch }" style="width: 500px;padding-right: 15px;padding-left: 15px;">
+                        <form #f="ngForm" class="d-flex" (ngSubmit)="onSearch(f)">
+                            <input class="form-control me-2" type="search" name="search" ngModel required #search="ngModel" placeholder="Search" id="search" aria-label="Search">
+                            <button class="btn btn-outline-info" type="submit">Search</button>
+                        </form>
+                    </div>
+                </li>
             </ul>
         </div>
 

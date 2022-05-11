@@ -19,8 +19,8 @@ export class ProductsService {
     return this.http.get(`${this.API_URI}/productos/catMenu/${idCat}`)
   }
 
-  getCategories(){
-    return this.http.get(`${this.API_URI}/productos/cat`)
+  getProductsbySearch(search: string){
+    return this.http.get(`${this.API_URI}/productos/search/${search}`)
   }
 
   getProduct(id:number){
