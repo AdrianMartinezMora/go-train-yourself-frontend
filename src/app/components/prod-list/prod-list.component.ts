@@ -1,6 +1,7 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2'
+import { imgEnvironment } from 'src/environments/environment';
 
 import { ProductsService } from '../../services/products.service'
 @Component({
@@ -12,6 +13,7 @@ export class ProdListComponent implements OnInit {
 
   productos: any = []
 
+  src=imgEnvironment.apiUrl;
   constructor(
     private prodService: ProductsService,
     private route: ActivatedRoute
