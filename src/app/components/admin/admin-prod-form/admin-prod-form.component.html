@@ -1,0 +1,31 @@
+<div class="card">
+    <div class="card-body">
+        <form>
+            <div class="mb-3">
+                <input type="text" name="nombre" [(ngModel)]="producto.nombreProd" placeholder="Nombre" class="form-control" autofocus>
+            </div>
+
+            <div class="mb-3">
+                <input type="number" name="precio" [(ngModel)]="producto.precio" placeholder="Precio" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <input type="number" name="stock" [(ngModel)]="producto.stock" placeholder="Stock" class="form-control">
+            </div>
+
+            <div class="mb-3">
+                <textarea name="descripcion" [(ngModel)]="producto.descripcion" placeholder="Descripcion" rows="2" class="form-control"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <input type="url" name="foto" [(ngModel)]="producto.foto" placeholder="Foto" class="form-control">
+            </div>
+
+            <div class="d-grid gap-2">
+                <button class="btn btn-outline-success" (click)="saveNewProduct()"> 
+                Guardar
+            </button>
+            </div>
+        </form>
+    </div>
+</div>
