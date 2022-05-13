@@ -7,7 +7,7 @@ import { ProductsService } from '../../../services/products.service'
   templateUrl: './prod-form.component.html',
   styleUrls: ['./prod-form.component.css']
 })
-export class ProdFormComponent implements OnInit {
+export class AdminProdFormComponent implements OnInit {
   
   producto: Product = {
     

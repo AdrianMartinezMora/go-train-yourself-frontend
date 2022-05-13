@@ -1,14 +1,14 @@
-import { Component, HostBinding, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import Swal from 'sweetalert2'
 
 import { ProductsService } from '../../../services/products.service'
 @Component({
   selector: 'app-prod-list',
-  templateUrl: './prod-list.component.html',
-  styleUrls: ['./prod-list.component.css']
+  templateUrl: './admin-prod-list.component.html',
+  styleUrls: ['./admin-prod-list.component.css']
 })
-export class ProdListComponent implements OnInit {
+export class AdminProdListComponent implements OnInit {
 
   productos: any = []
 

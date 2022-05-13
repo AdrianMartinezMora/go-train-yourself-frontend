@@ -13,7 +13,7 @@ export class ProdListComponent implements OnInit {
 
   productos: any = []
 
-  src=imgEnvironment.apiUrl;
+  src=imgEnvironment.apiUrl+"productos/";
   constructor(
     private prodService: ProductsService,
     private route: ActivatedRoute

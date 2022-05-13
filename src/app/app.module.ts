@@ -6,7 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
-import { ProdFormComponent } from './components/admin/admin-prod-form/prod-form.component';
+import { AdminProdFormComponent } from './components/admin/admin-prod-form/admin-prod-form.component';
+import { AdminProdListComponent } from './components/admin/admin-prod-list/admin-prod-list.component';
 import { ProdListComponent } from './components/prod-list/prod-list.component';
 
 import {ProductsService} from './services/products.service';
@@ -17,7 +18,8 @@ import { LoginComponent } from './components/notUser/login/login.component';
   declarations: [
     AppComponent,
     NavigationComponent,
-    ProdFormComponent,
+    AdminProdFormComponent,
+    AdminProdListComponent,
     ProdListComponent,
     RegisterComponent,
     LoginComponent
