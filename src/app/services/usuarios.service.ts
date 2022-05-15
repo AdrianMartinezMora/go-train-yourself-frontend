@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import Usuario from '../models/Usuario';
 
@@ -36,10 +37,6 @@ export class UsuariosService {
 
   register(usuario: Usuario) {
     return this.http.post(`${environment.apiUrl}/usuarios/`, usuario)
-  }
-
-  login(username: string, password: string){
-    return this.http.post(`${environment.apiUrl}/usuarios/login?username=${username}&password=${password}`, {});
   }
 
 }

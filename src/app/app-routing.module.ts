@@ -5,8 +5,9 @@ import { ProdListComponent} from './components/prod-list/prod-list.component';
 import { AdminProdFormComponent} from './components/admin/admin-prod-form/admin-prod-form.component';
 import { LoginComponent } from './components/notUser/login/login.component';
 import { RegisterComponent } from './components/notUser/register/register.component';
-import { AdminProdCatComponent } from './components/admin/admin-prod-cat/admin-prod-cat.component';
 import { AdminPlistComponent } from './components/admin/admin-plist/admin-plist.component';
+import { AuthGuard } from './shared/guards/authentication.guard';
+import { AdminGuard } from './shared/guards/admin.guard';
 
 const routes: Routes = [
   {
@@ -28,15 +29,13 @@ const routes: Routes = [
   },
   {
     path:'admin/plist',
-    component: AdminPlistComponent
+    component: AdminPlistComponent,
+    canActivate: [AuthGuard, AdminGuard]
   },
   {
     path:'admin/productos/add',
-    component: AdminProdFormComponent
-  },
-  {
-    path:'admin/productos/cat-prod',
-    component: AdminProdCatComponent
+    component: AdminProdFormComponent,
+    canActivate: [AuthGuard, AdminGuard]
   },
   {
     path:'login',

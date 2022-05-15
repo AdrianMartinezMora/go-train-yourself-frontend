@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CategoriesService } from 'src/app/services/categories.service';
 import { Categoria } from 'src/app/models/Categtoria';
-import { UsuariosService } from './usuarios.service';
 import { BehaviorSubject } from 'rxjs';
 import Menu from '../models/Menu';
 
@@ -10,14 +9,14 @@ import Menu from '../models/Menu';
 })
 export class MenuService {
 
-  userOnAdmin:Boolean=false;
+  userOnAdmin: Boolean = false;
 
   menu: BehaviorSubject<Menu[]> = new BehaviorSubject<Menu[]>([]);
 
   menuAdmin: Menu[] = [
     {
       name: "Productos",
-      link: "/admin/productos",
+      link: '',
       visible: false,
       children: [
         {
@@ -31,6 +30,45 @@ export class MenuService {
           visible: true
         }
       ]
+    },
+    {
+      name: "Usuarios",
+      link: '',
+      visible: false,
+      children: [
+        {
+          name: "Ver todos",
+          link: "/admin/plist",
+          visible: true
+        },
+        {
+          name: "Crear Producto",
+          link: "/admin/productos/add",
+          visible: true
+        }
+      ]
+    },
+    {
+      name: "Categorias",
+      link: '',
+      visible: false,
+      children: [
+        {
+          name: "Ver todos",
+          link: "/admin/plist",
+          visible: true
+        },
+        {
+          name: "Crear Producto",
+          link: "/admin/productos/add",
+          visible: true
+        }
+      ]
+    },
+    {
+      name: "Pedidos",
+      link: '',
+      visible: false
     }
   ];
 
@@ -38,13 +76,6 @@ export class MenuService {
   }
 
   public loadMenu() {
-    //TODO: Añadir condición para cargar un menu u otro segun si el usuario ha iniciado sesión
-
-    if(this.userOnAdmin){
-      this.menu.next(this.menuAdmin)
-
-    }else{
-
     this.categoriesSrv.getCategories().subscribe(categorias => {
       let finalMenu: Menu[] = categorias.filter(c => c.primaria && c.estado).map(categoria => {
         return this.transform(categoria);
@@ -55,16 +86,15 @@ export class MenuService {
       });
 
       finalMenu.push({
-        name: 'Otras categorias',
+        name: 'Otras categorias', 
         visible: false,
-        link:'',
+        link: '',
         children: secundarias
       });
 
       this.menu.next(finalMenu);
     });
   }
-}
 
   private transform(categoria: Categoria): Menu {
     let resultado: Menu = {

@@ -20,6 +20,13 @@
                     <input type="number" ngModel required #stock="ngModel" name="stock" style="padding-bottom: 20px ;" placeholder="Stock" class="form-control">
                 </div>
 
+                <div style="padding-bottom:20px ;">
+                    <p>Seleccione las categorias a las que pertenece este producto</p>
+                    <select *ngFor="let categoria of categorias" ngModel #categoria="ngModel" name="categoria">
+                    <option *ngFor="let cat of categorias" [value]="cat.id">{{cat.nombre}}</option>
+                  </select>
+                </div>
+
                 <div class="d-grid gap-2">
                     <button [disabled]="f.invalid" class="btn btn-outline-success"> 
                         Guardar

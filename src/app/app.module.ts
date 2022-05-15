@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { AdminProdFormComponent } from './components/admin/admin-prod-form/admin-prod-form.component';
 import { ProdListComponent } from './components/prod-list/prod-list.component';
-import { AdminProdCatComponent } from './components/admin/admin-prod-cat/admin-prod-cat.component';
 
 import {ProductsService} from './services/products.service';
 import { RegisterComponent } from './components/notUser/register/register.component';
@@ -23,7 +22,6 @@ import { AdminPlistComponent } from './components/admin/admin-plist/admin-plist.
     ProdListComponent,
     RegisterComponent,
     LoginComponent,
-    AdminProdCatComponent,
     AdminPlistComponent,
   ],
   imports: [

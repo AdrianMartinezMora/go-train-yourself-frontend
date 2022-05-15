@@ -11,19 +11,19 @@ export class PhotoService {
   createProdPhoto(image:File) {
     const fd = new FormData();
     fd.append('image',image)
-    return this.http.post(`http://localhost:4000/api/prod`,fd)
+    return this.http.post(`${environment.imageApiUrl}/prod`,fd)
   }
 
   createCatPhoto(image:File) {
     const fd = new FormData();
     fd.append('image',image)
-    return this.http.post(`http://localhost:4000/api/cat`,fd)
+    return this.http.post(`${environment.imageApiUrl}/cat`,fd)
   }
 
   createUserPhoto(image:File) {
     const fd = new FormData();
     fd.append('image',image)
-    return this.http.post(`http://localhost:4000/api/usr`,fd)
+    return this.http.post(`${environment.imageApiUrl}/usr`,fd)
   }
 
 }

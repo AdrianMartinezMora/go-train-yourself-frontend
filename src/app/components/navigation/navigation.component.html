@@ -52,22 +52,36 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-                <li *ngIf="userLogged" class="nav-item">
-                    <a class="nav-link" routerLink="admin/productos/add" routerLinkActive="active">
-                     Administración
-                    </a>
+                <li *ngIf="usuario?.admin" class="nav-item">
+                    <button *ngIf="menuType=='normalMenu'" type="button" class="btn btn-outline-info" (click)="goAdmin()">Administración</button>
+                    <button *ngIf="menuType=='adminMenu'" type="button" class="btn btn-outline-info" (click)="goHome()">Home</button>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="login" routerLinkActive="active">
-                     Iniciar Sesión
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" routerLink="register" routerLinkActive="active">
-                     Registrarse
-                    </a>
-                </li>
+                <ng-container *ngIf="usuario">
+                    <li class="nav-item">
+                        <!-- Carrito TODO: Cambiar link -->
+                        <a class="nav-link" routerLinkActive="active">
+                            CARRITO
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" (click)="logOut()" routerLinkActive="active">
+                            LOG OUT
+                        </a>
+                    </li>
+                </ng-container>
 
+                <ng-container *ngIf="!usuario">
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="login" routerLinkActive="active">
+                         Iniciar Sesión
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" routerLink="register" routerLinkActive="active">
+                         Registrarse
+                        </a>
+                    </li>
+                </ng-container>
             </ul>
         </div>
     </div>

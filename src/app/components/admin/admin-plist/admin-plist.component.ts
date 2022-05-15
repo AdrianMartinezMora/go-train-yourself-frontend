@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Product } from 'src/app/models/Product';
+import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2'
-import { imgEnvironment } from 'src/environments/environment';
-
 import { ProductsService } from '../../../services/products.service'
+
+
 @Component({
   selector: 'app-prod-list',
   templateUrl: './admin-plist.component.html',
@@ -11,9 +13,11 @@ import { ProductsService } from '../../../services/products.service'
 })
 export class AdminPlistComponent implements OnInit {
 
-  productos: any = []
+  search: string = '';
+  productos: Product[] = [];
+  showProductos: Product[] = [];
+  imageApiUrl: string = environment.imageApiUrl + 'productos/';
 
-  src=imgEnvironment.apiUrl+"productos/";
   constructor(
     private prodService: ProductsService,
     private route: ActivatedRoute
@@ -23,15 +27,22 @@ export class AdminPlistComponent implements OnInit {
     this.route.params.subscribe(params => {
       let categoria = params['categoria'];
       if(categoria != undefined){
-        this.prodService.getProductsbyCategoria(categoria).subscribe(productos => this.productos = productos);
+        this.prodService.getProductsbyCategoria(categoria).subscribe((productos: Product[]) => this.productos = productos);
       }else{
         this.prodService.getProducts().subscribe(
-          res => {
-            this.productos=res
+          (res: Product[]) => {
+            this.productos = res;
+            this.showProductos = this.productos;
           } 
         )
       }
       
+    });
+  }
+
+  filter(){
+    this.showProductos = this.productos.filter(p => {
+      return p.nombreProd.toLowerCase().includes(this.search.toLowerCase());
     });
   }
 

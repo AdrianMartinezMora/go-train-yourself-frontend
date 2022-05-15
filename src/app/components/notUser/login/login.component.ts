@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import Usuario from 'src/app/models/Usuario';
-import { UsuariosService } from 'src/app/services/usuarios.service';
-import { Md5 } from 'md5-typescript';
 import { Router } from '@angular/router';
+import { MenuService } from 'src/app/services/menu.service';
+import { AccountService } from 'src/app/services/account.service';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +16,9 @@ export class LoginComponent implements OnInit {
 
   user:Usuario={};
 
-  constructor(private usuarioSrv: UsuariosService,private router: Router) { 
+  constructor(
+    private accountSrv: AccountService,
+    private router: Router) { 
     this.badUser=false;
   }
 
@@ -24,15 +26,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(f: NgForm){
-    this.usuarioSrv.login(f.value.username,Md5.init(f.value.password)).subscribe(
-      (resp) => {
-        this.router.navigate(['/']);
-      },
-      (err)=> {
-        this.badUser=true;
-      }
-
-    )
+    this.accountSrv.login(f.value.username, f.value.password).subscribe(data => this.router.navigate(['/productos']));
   }
 
 }
