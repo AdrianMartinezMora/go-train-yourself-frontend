@@ -7,22 +7,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
 import { AdminProdFormComponent } from './components/admin/admin-prod-form/admin-prod-form.component';
-import { AdminProdListComponent } from './components/admin/admin-prod-list/admin-prod-list.component';
 import { ProdListComponent } from './components/prod-list/prod-list.component';
+import { AdminProdCatComponent } from './components/admin/admin-prod-cat/admin-prod-cat.component';
 
 import {ProductsService} from './services/products.service';
 import { RegisterComponent } from './components/notUser/register/register.component';
 import { LoginComponent } from './components/notUser/login/login.component';
+import { AdminPlistComponent } from './components/admin/admin-plist/admin-plist.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
     AdminProdFormComponent,
-    AdminProdListComponent,
     ProdListComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    AdminProdCatComponent,
+    AdminPlistComponent,
   ],
   imports: [
     BrowserModule,

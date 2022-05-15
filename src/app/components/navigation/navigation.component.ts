@@ -11,6 +11,9 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class NavigationComponent implements OnInit {
 
+
+  userLogged:Boolean=true;
+
   visibleSearch:boolean=false;
 
   menus: Menu[] = [];

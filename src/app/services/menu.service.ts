@@ -10,22 +10,24 @@ import Menu from '../models/Menu';
 })
 export class MenuService {
 
+  userOnAdmin:Boolean=false;
+
   menu: BehaviorSubject<Menu[]> = new BehaviorSubject<Menu[]>([]);
 
   menuAdmin: Menu[] = [
     {
       name: "Productos",
-      link: "/productos",
+      link: "/admin/productos",
       visible: false,
       children: [
         {
           name: "Ver todos",
-          link: "/productos",
+          link: "/admin/plist",
           visible: true
         },
         {
           name: "Crear Producto",
-          link: "/productos/add",
+          link: "/admin/productos/add",
           visible: true
         }
       ]
@@ -37,6 +39,12 @@ export class MenuService {
 
   public loadMenu() {
     //TODO: Añadir condición para cargar un menu u otro segun si el usuario ha iniciado sesión
+
+    if(this.userOnAdmin){
+      this.menu.next(this.menuAdmin)
+
+    }else{
+
     this.categoriesSrv.getCategories().subscribe(categorias => {
       let finalMenu: Menu[] = categorias.filter(c => c.primaria && c.estado).map(categoria => {
         return this.transform(categoria);
@@ -56,6 +64,7 @@ export class MenuService {
       this.menu.next(finalMenu);
     });
   }
+}
 
   private transform(categoria: Categoria): Menu {
     let resultado: Menu = {
