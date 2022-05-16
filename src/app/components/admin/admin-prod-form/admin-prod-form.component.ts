@@ -10,6 +10,7 @@ import { CategoriesService } from 'src/app/services/categories.service';
 import { PhotoService } from 'src/app/services/photo.service';
 import { CatProdService } from 'src/app/services/cat-prod.service';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 
 
 interface HtmlInputEvent extends Event {
@@ -46,9 +47,9 @@ export class AdminProdFormComponent implements OnInit {
   catError = false;
 
   constructor(
-    private prodSrv: ProductsService, 
-    private photoSrv: PhotoService, 
-    private catSrv: CategoriesService, 
+    private prodSrv: ProductsService,
+    private photoSrv: PhotoService,
+    private catSrv: CategoriesService,
     private catProdSrv: CatProdService,
     private router: Router) { }
 
@@ -107,13 +108,13 @@ export class AdminProdFormComponent implements OnInit {
 
         this.prodSrv.saveProduct(this.producto).subscribe(
           res => {
-            this.newProdId=res
+            this.newProdId = res
             this.photoSrv.createProdPhoto(myNewFile).subscribe(res => console.log(res), err => console.log(err))
-            
+
             for (let i = 0; i < this.categoriasSelected.length; i++) {
-              let catprod:CatProd={
-                id_prod:this.newProdId.insertId,
-                id_cat:this.categoriasSelected[i]
+              let catprod: CatProd = {
+                id_prod: this.newProdId.insertId,
+                id_cat: this.categoriasSelected[i]
               }
               this.catProdSrv.create(catprod).subscribe(res => console.log(res), err => console.log(err))
             }
@@ -121,7 +122,22 @@ export class AdminProdFormComponent implements OnInit {
           err => console.log(err)
         )
 
-        this.router.navigate(['/admin/plist']);
+        Swal.fire({
+          title: 'Producto creado con exito.',
+          text: "Ahora que quieres hacer?",
+          showDenyButton: true,
+          confirmButtonText: 'Crear Otro Producto',
+          denyButtonText: `Ir a productos`,
+        }).then((result) => {
+
+          if (result.isConfirmed) {
+            window.location.reload()
+          } else if (result.isDenied) {
+            this.router.navigate(['/admin/plist']);
+          }
+        })
+
+
       } else {
         this.fileError = true
       }

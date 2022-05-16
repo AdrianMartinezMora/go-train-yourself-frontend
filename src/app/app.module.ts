@@ -14,6 +14,11 @@ import { RegisterComponent } from './components/notUser/register/register.compon
 import { LoginComponent } from './components/notUser/login/login.component';
 import { AdminPlistComponent } from './components/admin/admin-plist/admin-plist.component';
 import { JwtInterceptor } from './shared/guards/jwt.interceptor';
+import { AdminCatListComponent } from './components/admin/admin-cat-list/admin-cat-list.component';
+import { AdminUserListComponent } from './components/admin/admin-user-list/admin-user-list.component';
+import { AdminOrderListComponent } from './components/admin/admin-order-list/admin-order-list.component';
+import { AdminCatFormComponent } from './components/admin/admin-cat-form/admin-cat-form.component';
+import { CarritoComponent } from './components/carrito/carrito.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +29,11 @@ import { JwtInterceptor } from './shared/guards/jwt.interceptor';
     RegisterComponent,
     LoginComponent,
     AdminPlistComponent,
+    AdminCatListComponent,
+    AdminUserListComponent,
+    AdminOrderListComponent,
+    AdminCatFormComponent,
+    CarritoComponent,
   ],
   imports: [
     BrowserModule,

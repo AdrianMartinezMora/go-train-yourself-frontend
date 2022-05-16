@@ -4,6 +4,7 @@ import Menu from 'src/app/models/Menu';
 import Usuario from 'src/app/models/Usuario';
 import { AccountService } from 'src/app/services/account.service';
 import { MenuService } from 'src/app/services/menu.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-navigation',
@@ -18,6 +19,8 @@ export class NavigationComponent implements OnInit {
   visibleSearch: boolean = false;
 
   menuType: string = 'normalMenu';
+
+  imageUrl: string = environment.imageUrl + '/usuarios/';
 
   menus: Menu[] = [];
 

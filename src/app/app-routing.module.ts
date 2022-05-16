@@ -6,6 +6,12 @@ import { AdminProdFormComponent} from './components/admin/admin-prod-form/admin-
 import { LoginComponent } from './components/notUser/login/login.component';
 import { RegisterComponent } from './components/notUser/register/register.component';
 import { AdminPlistComponent } from './components/admin/admin-plist/admin-plist.component';
+import { AdminCatListComponent } from './components/admin/admin-cat-list/admin-cat-list.component';
+import { AdminUserListComponent } from './components/admin/admin-user-list/admin-user-list.component';
+import { AdminOrderListComponent } from './components/admin/admin-order-list/admin-order-list.component';
+import { AdminCatFormComponent } from './components/admin/admin-cat-form/admin-cat-form.component';
+import { CarritoComponent } from './components/carrito/carrito.component';
+
 import { AuthGuard } from './shared/guards/authentication.guard';
 import { AdminGuard } from './shared/guards/admin.guard';
 
@@ -37,6 +43,31 @@ const routes: Routes = [
     component: AdminProdFormComponent,
     canActivate: [AuthGuard, AdminGuard]
   },
+  {
+    path:'admin/catlist',
+    component: AdminCatListComponent,
+    canActivate: [AuthGuard, AdminGuard]
+  },
+  {
+    path:'admin/categorias/add',
+    component: AdminCatFormComponent,
+    canActivate: [AuthGuard, AdminGuard]
+  },
+  {
+    path:'admin/userlist',
+    component: AdminUserListComponent,
+    canActivate: [AuthGuard, AdminGuard]
+  },
+  {
+    path:'admin/orderlist',
+    component: AdminOrderListComponent,
+    canActivate: [AuthGuard, AdminGuard]
+  },
+  {
+    path:'carrito',
+    component: CarritoComponent
+  },
+  
   {
     path:'login',
     component: LoginComponent

@@ -1,34 +1,40 @@
 <div>
-    <h3>Registrarse</h3>
+    <h3 style="text-align: center;">Registrarse</h3>
     <div class="card" style="text-align:center ; font-weight: 1000;">
         <div class="card-body">
             <form #f="ngForm" (ngSubmit)="onSubmit(f)">
 
-                <div class="mb-3" style="padding-bottom: 20px ; ">
-                    <label for="registerRealname">Nombre Completo</label>
-                    <input type="text" name="realname" ngModel required #realname="ngModel" class="form-control" id="registerRealname" placeholder="Introduce nombre completo (Nombre real)" autofocus>
+                <div class="image" style="float: left;">
+                    <input type="file" ngModel required #foto="ngModel" class="d-none" name="photo" (change)="onPhotoSelected($event)" #photoInput>
+                    <img [src]="photoSelected || '../../../../assets/images/user.png'" width="300" height="300" alt="No se ha subido ninguna imagen" (click)="photoInput.click()">
                 </div>
+                <div style="float:right; width: 75%;">
+                    <div class="mb-3" style="padding-bottom: 20px ; ">
+                        <label for="registerRealname">Nombre Completo</label>
+                        <input type="text" name="realname" ngModel required #realname="ngModel" class="form-control" id="registerRealname" placeholder="Introduce nombre completo (Nombre real)" autofocus>
+                    </div>
 
-                <div class="mb-3" style="padding-bottom: 20px ; ">
-                    <label for="registerUsername">Nombre de Usuario</label>
-                    <input type="text" name="username" ngModel required #username="ngModel" class="form-control" id="registerUsername" placeholder="Introduce nombre de usuario" autofocus>
-                    <p *ngIf="invalidUsername" style="color: red;">Este nombre de usuario ya existe</p>
-                </div>
+                    <div class="mb-3" style="padding-bottom: 20px ; ">
+                        <label for="registerUsername">Nombre de Usuario</label>
+                        <input type="text" name="username" ngModel required #username="ngModel" class="form-control" id="registerUsername" placeholder="Introduce nombre de usuario" autofocus>
+                        <p *ngIf="invalidUsername" style="color: red;">Este nombre de usuario ya existe</p>
+                    </div>
 
-                <div class="mb-3" style="padding-bottom: 20px ; ">
-                    <label for="registerEmail">Correo</label>
-                    <input type="email" name="email" ngModel required #email="ngModel" class="form-control" id="registerEmail" placeholder="Introduce correo electrónico">
-                    <p *ngIf="invalidEmail" style="color: red;">Ya hay un usuario con este correo</p>
-                </div>
+                    <div class="mb-3" style="padding-bottom: 20px ; ">
+                        <label for="registerEmail">Correo</label>
+                        <input type="email" name="email" ngModel required #email="ngModel" class="form-control" id="registerEmail" placeholder="Introduce correo electrónico">
+                        <p *ngIf="invalidEmail" style="color: red;">Ya hay un usuario con este correo</p>
+                    </div>
 
-                <div class="mb-3" style="padding-bottom: 20px ;">
-                    <label for="loginPassword">Contraseña</label>
-                    <input type="password" name="password" ngModel required #password="ngModel" class="form-control" id="loginPassword" placeholder="Contraseña">
-                </div>
+                    <div class="mb-3" style="padding-bottom: 20px ;">
+                        <label for="loginPassword">Contraseña</label>
+                        <input type="password" name="password" ngModel required #password="ngModel" class="form-control" id="loginPassword" placeholder="Contraseña">
+                    </div>
 
-                <div class="d-grid gap-2">
-                    <button type="submit" [disabled]="f.invalid" class="btn btn-outline-info">Iniciar Sesión &nbsp;&nbsp;&nbsp;<i
+                    <div class="d-grid gap-2">
+                        <button type="submit" [disabled]="f.invalid" class="btn btn-outline-info">Iniciar Sesión &nbsp;&nbsp;&nbsp;<i
                             class="fas fa-sign-in-alt"></i></button>
+                    </div>
                 </div>
             </form>
         </div>

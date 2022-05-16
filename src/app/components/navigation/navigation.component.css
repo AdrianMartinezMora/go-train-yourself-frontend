@@ -2,10 +2,19 @@
     background-color: #55595c;
     color: white;
     font-weight: 500;
-  }  
+}
 
-  .navbar .navbar-nav .dropdown-item {
+.navbar .navbar-nav .dropdown-item {
     color: black;
-  }  
+}
 
-  
+a.avatar img {
+    /* cambia estos dos valores para definir el tamaño de tu círculo */
+    height: 55px;
+    width: 56px;
+    /* los siguientes valores son independientes del tamaño del círculo */
+    background-repeat: no-repeat;
+    background-position: 50%;
+    border-radius: 50%;
+    background-size: 100% auto;
+}

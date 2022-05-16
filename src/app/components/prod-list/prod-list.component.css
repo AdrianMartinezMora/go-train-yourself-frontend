@@ -54,6 +54,7 @@ a:hover {
 
 .section-products .single-product:hover .part-1 {
     transform: scale(1.2, 1.2);
+    cursor: pointer;
 }
 
 .section-products .single-product .part-1 ul {

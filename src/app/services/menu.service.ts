@@ -33,20 +33,8 @@ export class MenuService {
     },
     {
       name: "Usuarios",
-      link: '',
+      link: '/admin/userlist',
       visible: false,
-      children: [
-        {
-          name: "Ver todos",
-          link: "/admin/plist",
-          visible: true
-        },
-        {
-          name: "Crear Producto",
-          link: "/admin/productos/add",
-          visible: true
-        }
-      ]
     },
     {
       name: "Categorias",
@@ -54,20 +42,20 @@ export class MenuService {
       visible: false,
       children: [
         {
-          name: "Ver todos",
-          link: "/admin/plist",
+          name: "Ver todas",
+          link: "/admin/catlist",
           visible: true
         },
         {
-          name: "Crear Producto",
-          link: "/admin/productos/add",
+          name: "Crear Categoria",
+          link: "/admin/categorias/add",
           visible: true
         }
       ]
     },
     {
       name: "Pedidos",
-      link: '',
+      link: '/admin/orderlist',
       visible: false
     }
   ];
