@@ -1,10 +1,9 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 import Menu from 'src/app/models/Menu';
 import Usuario from 'src/app/models/Usuario';
 import { AccountService } from 'src/app/services/account.service';
 import { MenuService } from 'src/app/services/menu.service';
-import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-navigation',
@@ -25,8 +24,7 @@ export class NavigationComponent implements OnInit {
   constructor(
     private menuSrv: MenuService,
     private accountSrv: AccountService,
-    private router: Router,
-    @Inject(DOCUMENT) document: any) {
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -41,15 +39,6 @@ export class NavigationComponent implements OnInit {
     this.accountSrv.usuario$.subscribe(usuario => {
       this.usuario = usuario;
     });
-
-    if (document.location.href.includes('admin')) {
-      console.log("Esta entrando xd");
-      this.menuSrv.menu.next(this.menuSrv.menuAdmin)
-      this.menuType = 'adminMenu'
-    } else {
-      this.menuSrv.loadMenu();
-      this.menuType = 'normalMenu'
-    }
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
