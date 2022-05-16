@@ -30,8 +30,7 @@ export class NavigationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
-    this.menuSrv.loadMenu();
+    
     this.menuSrv.getMenu.subscribe(menus => {
       this.menus = menus;
       this.menuType = 'normalMenu'
