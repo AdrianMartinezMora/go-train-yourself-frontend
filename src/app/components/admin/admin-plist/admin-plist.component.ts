@@ -16,7 +16,7 @@ export class AdminPlistComponent implements OnInit {
   search: string = '';
   productos: Product[] = [];
   showProductos: Product[] = [];
-  imageApiUrl: string = environment.imageApiUrl + 'productos/';
+  imageUrl: string = environment.imageUrl + '/productos/';
 
   constructor(
     private prodService: ProductsService,

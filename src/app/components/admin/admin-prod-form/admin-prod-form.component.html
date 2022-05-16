@@ -4,31 +4,38 @@
 
         <form #f="ngForm" (ngSubmit)="saveNewProduct(f)">
             <div style="float: left;">
-                <input type="file" ngModel required #foto="ngModel" class="d-none" name="photo" (change)="onPhotoSelected($event)" #photoInput>
-                <img [src]="photoSelected || '../../../../assets/images/noImage.png'" width="300" height="300" alt="No se ha subido ninguna imagen" (click)="photoInput.click()">
+                <input type="file" ngModel required #foto="ngModel" class="d-none" name="photo"
+                    (change)="onPhotoSelected($event)" #photoInput>
+                <img [src]="photoSelected || '../../../../assets/images/noImage.png'" width="300" height="300"
+                    alt="No se ha subido ninguna imagen" (click)="photoInput.click()">
             </div>
             <div style="float:right; width: 75%;">
                 <div class="mb-3" style="padding-bottom: 20px ;">
-                    <input type="text" ngModel required #prodName="ngModel" name="prodName" placeholder="Nombre" class="form-control" autofocus>
+                    <input type="text" ngModel required #prodName="ngModel" name="prodName" placeholder="Nombre"
+                        class="form-control" autofocus>
                 </div>
 
                 <div class="mb-3" style="padding-bottom: 20px ;">
-                    <input type="number" ngModel required #precio="ngModel" name="precio" placeholder="Precio" class="form-control">
+                    <input type="number" ngModel required #precio="ngModel" name="precio" placeholder="Precio"
+                        class="form-control">
                 </div>
 
                 <div class="mb-3">
-                    <input type="number" ngModel required #stock="ngModel" name="stock" style="padding-bottom: 20px ;" placeholder="Stock" class="form-control">
+                    <input type="number" ngModel required #stock="ngModel" name="stock" style="padding-bottom: 20px ;"
+                        placeholder="Stock" class="form-control">
                 </div>
 
-                <div style="padding-bottom:20px ;">
-                    <p>Seleccione las categorias a las que pertenece este producto</p>
-                    <select *ngFor="let categoria of categorias" ngModel #categoria="ngModel" name="categoria">
-                    <option *ngFor="let cat of categorias" [value]="cat.id">{{cat.nombre}}</option>
-                  </select>
+                <p style="text-align: center;">Seleccione las categorias a las que pertenece el nuevo producto</p>
+                <p *ngIf="catError" style="color: red;font-size: larger; font-weight: bold; text-align: center;">Hay que seleccionar minimo una categoria</p>
+                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group" style="padding-bottom: 20px;">
+                <div *ngFor="let categoria of categorias" style="padding-right:5px ;">
+                    <input type="checkbox" class="btn-check" [id]="categoria.id" autocomplete="off" (click)="onchangeCheckbox({id: categoria.id, event: $event})">
+                    <label class="btn btn-outline-info" [for]="categoria.id">{{categoria.nombre}}</label>
                 </div>
+            </div>
 
                 <div class="d-grid gap-2">
-                    <button [disabled]="f.invalid" class="btn btn-outline-success"> 
+                    <button [disabled]="f.invalid" class="btn btn-outline-success">
                         Guardar
                     </button>
                 </div>

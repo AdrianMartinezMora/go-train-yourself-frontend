@@ -15,22 +15,23 @@ export class ProdListComponent implements OnInit {
   search: string = '';
   productos: Product[] = [];
   showProductos: Product[] = [];
-  imageApiUrl: string = environment.imageApiUrl + 'productos/';
+  imageUrl: string = environment.imageUrl + '/productos/';
 
   constructor(
     private prodService: ProductsService,
     private route: ActivatedRoute
-    ) { }
+    ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       let categoria = params['categoria'];
       if(categoria != undefined){
-        this.prodService.getProductsbyCategoria(categoria).subscribe((productos: Product[]) => this.productos = productos);
+        this.prodService.getProductsbyCategoria(categoria).subscribe((productos: Product[]) => {this.productos = productos,this.showProductos = productos});
       }else{
         this.prodService.getProducts().subscribe(
           (res: Product[]) => {
             this.productos = res;
+            console.log(this.productos)
             this.showProductos = this.productos;
           } 
         )

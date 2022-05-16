@@ -46,7 +46,6 @@ export class NavigationComponent implements OnInit {
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
-        console.log(event.url)
         if (event.url.includes('admin')) {
           this.menuSrv.menu.next(this.menuSrv.menuAdmin)
           this.menuType = 'adminMenu'

@@ -31,7 +31,6 @@ export class AccountService {
           var usuario: Usuario = {
             ...response.user
           }
-          
           localStorage.setItem('usuario', JSON.stringify(usuario));
           localStorage.setItem('token', response.token);
           this.usuario$.next(usuario);
