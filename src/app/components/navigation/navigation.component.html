@@ -34,23 +34,9 @@
                         </ul>
                     </li>
                 </div>
-
-                <li class="nav-item dropdown" (mouseleave)="visibleSearch = false" (mouseover)="visibleSearch = true">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" [ngClass]="{ 'active': visibleSearch }" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-magnifying-glass fa-fw fa-xl"></i>
-                    </a>
-                    <div class="dropdown-menu" [ngClass]="{ 'show': visibleSearch }" style="width: 500px;padding-right: 15px;padding-left: 15px;">
-                        <form #f="ngForm" class="d-flex" (ngSubmit)="onSearch(f)">
-                            <input class="form-control me-2" type="search" name="search" ngModel required #search="ngModel" placeholder="Search" id="search" aria-label="Search">
-                            <button class="btn btn-outline-info" type="submit">Search</button>
-                        </form>
-                    </div>
-                </li>
             </ul>
-        </div>
 
 
-        <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 <li *ngIf="usuario?.admin" class="nav-item">
                     <button *ngIf="menuType=='normalMenu'" type="button" class="btn btn-outline-info" (click)="goAdmin()">Administración</button>
@@ -60,29 +46,35 @@
                     <li class="nav-item">
                         <!-- Carrito TODO: Cambiar link -->
                         <a class="nav-link" routerLinkActive="active">
-                            CARRITO
-                        </a>
+                                CARRITO
+                            </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" (click)="logOut()" routerLinkActive="active">
-                            LOG OUT
-                        </a>
+                                LOG OUT
+                            </a>
                     </li>
                 </ng-container>
 
                 <ng-container *ngIf="!usuario">
                     <li class="nav-item">
                         <a class="nav-link" routerLink="login" routerLinkActive="active">
-                         Iniciar Sesión
-                        </a>
+                             Iniciar Sesión
+                            </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" routerLink="register" routerLinkActive="active">
-                         Registrarse
-                        </a>
+                             Registrarse
+                            </a>
                     </li>
                 </ng-container>
             </ul>
+
         </div>
+
+
+
+
     </div>
+
 </nav>

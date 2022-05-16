@@ -2,11 +2,22 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+//IP DE ODEC
+/*
 export const environment = {
   production: false,
   apiUrl: 'http://192.168.4.118:3000/api',
   imageApiUrl: 'http://192.168.4.118:4000/api',
   imageUrl: 'http://192.168.4.118:4000/uploads'
+};
+*/
+
+//IP DE CASA
+export const environment = {
+  production: false,
+  apiUrl: 'http://192.168.31.184:3000/api',
+  imageApiUrl: 'http://192.168.31.184:4000/api',
+  imageUrl: 'http://192.168.31.184:4000/uploads'
 };
 
 /*

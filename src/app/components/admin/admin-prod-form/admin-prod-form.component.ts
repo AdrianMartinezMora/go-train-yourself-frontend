@@ -9,6 +9,7 @@ import { ProductsService } from '../../../services/products.service'
 import { CategoriesService } from 'src/app/services/categories.service';
 import { PhotoService } from 'src/app/services/photo.service';
 import { CatProdService } from 'src/app/services/cat-prod.service';
+import { Router } from '@angular/router';
 
 
 interface HtmlInputEvent extends Event {
@@ -44,7 +45,12 @@ export class AdminProdFormComponent implements OnInit {
   photoSelected: string | ArrayBuffer | null | undefined;
   catError = false;
 
-  constructor(private prodSrv: ProductsService, private photoSrv: PhotoService, private catSrv: CategoriesService, private catProdSrv: CatProdService) { }
+  constructor(
+    private prodSrv: ProductsService, 
+    private photoSrv: PhotoService, 
+    private catSrv: CategoriesService, 
+    private catProdSrv: CatProdService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.catSrv.getCategories().subscribe(
@@ -115,6 +121,7 @@ export class AdminProdFormComponent implements OnInit {
           err => console.log(err)
         )
 
+        this.router.navigate(['/admin/plist']);
       } else {
         this.fileError = true
       }
