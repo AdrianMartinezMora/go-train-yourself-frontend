@@ -20,8 +20,8 @@
                     <input type="number" ngModel required #stock="ngModel" name="stock" style="padding-bottom: 20px ;" placeholder="Stock" class="form-control">
                 </div>
 
-                <p style="text-align: center;">Seleccione las categorias a las que pertenece el nuevo producto</p>
-                <p *ngIf="catError" style="color: red;font-size: larger; font-weight: bold; text-align: center;">Hay que seleccionar minimo una categoria</p>
+                <p style="text-align: center;">Seleccione las categorías a las que pertenece el nuevo producto</p>
+                <p *ngIf="catError" style="color: red;font-size: larger; font-weight: bold; text-align: center;">Hay que seleccionar mínimo una categoría</p>
                 <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group" style="padding-bottom: 20px;">
                     <div *ngFor="let categoria of categorias" style="padding-right:5px ;">
                         <input type="checkbox" class="btn-check" [id]="categoria.id" autocomplete="off" (click)="onchangeCheckbox({id: categoria.id, event: $event})">

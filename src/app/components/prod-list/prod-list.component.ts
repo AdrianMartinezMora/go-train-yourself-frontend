@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/models/Product';
 import { environment } from 'src/environments/environment';
-import Swal from 'sweetalert2'
+import { Router } from '@angular/router';
 
 import { ProductsService } from '../../services/products.service'
 @Component({
@@ -19,7 +19,8 @@ export class ProdListComponent implements OnInit {
 
   constructor(
     private prodService: ProductsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
     ) {}
 
   ngOnInit(): void {
@@ -44,5 +45,6 @@ export class ProdListComponent implements OnInit {
       return p.nombreProd.toLowerCase().includes(this.search.toLowerCase());
     });
   }
+
 
 }

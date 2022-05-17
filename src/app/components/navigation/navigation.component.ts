@@ -16,7 +16,7 @@ export class NavigationComponent implements OnInit {
 
   usuario: Usuario;
 
-  visibleSearch: boolean = false;
+  userDrop = false;
 
   menuType: string = 'normalMenu';
 

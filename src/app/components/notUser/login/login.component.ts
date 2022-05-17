@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import Usuario from 'src/app/models/Usuario';
 import { Router } from '@angular/router';
-import { MenuService } from 'src/app/services/menu.service';
 import { AccountService } from 'src/app/services/account.service';
 
 @Component({

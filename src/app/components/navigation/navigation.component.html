@@ -52,11 +52,11 @@
                         </a>
                     </li>
 
-                    <li class="nav-item dropdown" style="padding-right: 70px;">
+                    <li class="nav-item dropdown" style="padding-right: 70px;" (mouseleave)="userDrop = false" (mouseover)="userDrop = true">
                         <a class="dropdown-toggle avatar" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <img src="{{imageUrl + usuario.foto}}">
                         </a>
-                        <ul class="dropdown-menu">
+                        <ul class="dropdown-menu" [ngClass]="{ 'show': userDrop }">
                             <li><a class="dropdown-item" href="#">Perfil</a></li>
                             <li><a class="dropdown-item" href="#" (click)="logOut()">Cerrar Sesión</a></li>
                         </ul>

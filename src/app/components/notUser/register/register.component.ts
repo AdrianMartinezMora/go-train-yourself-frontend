@@ -18,6 +18,8 @@ export class RegisterComponent implements OnInit {
 
   user: Usuario = {};
 
+  usuarios: Usuario[] = []
+
   invalidUsername: boolean = false;
   invalidEmail: boolean = false;
   file: File | undefined;
@@ -32,6 +34,11 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.usuarioSrv.getUsuarios().subscribe(
+      (res: Usuario[]) => {
+        this.usuarios = res
+      }
+    )
   }
 
   onPhotoSelected(event: HTMLInputElement | any): void {
@@ -69,26 +76,23 @@ export class RegisterComponent implements OnInit {
       }
     }
 
-    this.usuarioSrv.validUsername(f.value.username).subscribe(
-      (resp) => {
-        if (resp = "invalid") {
-          this.invalidUsername = true;
-        } else {
-          this.invalidUsername = false;
-        }
+    this.invalidUsername = false;
+    for (let i = 0; i < this.usuarios.length; i++) {
+      let catname = this.usuarios[i].nombreUsuario.toLowerCase();
+      let name = f.value.username.toLowerCase();
+      if (catname == name) {
+        this.invalidUsername = true;
       }
-    )
+    }
 
-    this.usuarioSrv.validEmail(f.value.email).subscribe(
-      (resp) => {
-        if (resp = "invalid") {
-          this.invalidEmail = true;
-        } else {
-          this.invalidEmail = false;
-        }
+    this.invalidEmail = false;
+    for (let i = 0; i < this.usuarios.length; i++) {
+      let catname = this.usuarios[i].correo.toLowerCase();
+      let name = f.value.email.toLowerCase();
+      if (catname == name) {
+        this.invalidEmail = true;
       }
-    )
-
+    }
     
     if (!this.invalidUsername && !this.invalidEmail) {
       this.usuarioSrv.register(this.user).subscribe(

@@ -37,7 +37,7 @@ export class MenuService {
       visible: false,
     },
     {
-      name: "Categorias",
+      name: "Categorías",
       link: '',
       visible: false,
       children: [
@@ -47,7 +47,7 @@ export class MenuService {
           visible: true
         },
         {
-          name: "Crear Categoria",
+          name: "Crear Categoría",
           link: "/admin/categorias/add",
           visible: true
         }

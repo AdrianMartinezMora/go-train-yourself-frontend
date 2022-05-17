@@ -18,4 +18,19 @@ export class CategoriesService {
   getCategories(): Observable<Categoria[]>{
     return this.http.get<Categoria[]>(`${environment.apiUrl}/categorias`);
   }
+
+  validCatname(categoria: string) {
+    return this.http.get(`${environment.apiUrl}/categorias/catval/${categoria}`)
+  }
+
+  saveCat(categoria:Categoria){
+    return this.http.post(`${environment.apiUrl}/categorias/`, categoria)
+  }
+
+  deleteCat(id:number){
+    return this.http.delete(`${environment.apiUrl}/categorias/${id}`)
+  }
+
+  
+
 }

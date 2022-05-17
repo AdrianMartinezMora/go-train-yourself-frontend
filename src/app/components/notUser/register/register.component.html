@@ -5,7 +5,7 @@
             <form #f="ngForm" (ngSubmit)="onSubmit(f)">
 
                 <div class="image" style="float: left;">
-                    <input type="file" ngModel required #foto="ngModel" class="d-none" name="photo" (change)="onPhotoSelected($event)" #photoInput>
+                    <input type="file" ngModel #foto="ngModel" class="d-none" name="photo" (change)="onPhotoSelected($event)" #photoInput>
                     <img [src]="photoSelected || '../../../../assets/images/user.png'" width="300" height="300" alt="No se ha subido ninguna imagen" (click)="photoInput.click()">
                 </div>
                 <div style="float:right; width: 75%;">

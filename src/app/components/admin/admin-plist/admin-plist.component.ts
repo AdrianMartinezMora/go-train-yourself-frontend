@@ -7,7 +7,7 @@ import { ProductsService } from '../../../services/products.service'
 
 
 @Component({
-  selector: 'app-prod-list',
+  selector: 'app-plist',
   templateUrl: './admin-plist.component.html',
   styleUrls: ['./admin-plist.component.css']
 })
@@ -50,7 +50,7 @@ export class AdminPlistComponent implements OnInit {
 
     Swal.fire({
       title: 'Eliminar Producto?',
-      text: "Esta accion no podra ser revertida",
+      text: "Esta acción no podrá ser revertida",
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -65,8 +65,8 @@ export class AdminPlistComponent implements OnInit {
             this.productos.splice(this.productos.indexOf(element), 1)
 
             Swal.fire(
-              'Deleted!',
-              'El producto se ha eliminado con exito',
+              'Eliminado!',
+              'El producto se ha eliminado con éxito',
               'success'
             )
 

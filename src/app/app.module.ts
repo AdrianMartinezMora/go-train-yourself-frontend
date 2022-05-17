@@ -19,6 +19,8 @@ import { AdminUserListComponent } from './components/admin/admin-user-list/admin
 import { AdminOrderListComponent } from './components/admin/admin-order-list/admin-order-list.component';
 import { AdminCatFormComponent } from './components/admin/admin-cat-form/admin-cat-form.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
+import { UsuarioDetalleComponent } from './components/usuario-detalle/usuario-detalle.component';
+import { ProductoDetalleComponent } from './components/producto-detalle/producto-detalle.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { CarritoComponent } from './components/carrito/carrito.component';
     AdminOrderListComponent,
     AdminCatFormComponent,
     CarritoComponent,
+    UsuarioDetalleComponent,
+    ProductoDetalleComponent,
   ],
   imports: [
     BrowserModule,

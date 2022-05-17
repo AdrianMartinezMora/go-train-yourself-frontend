@@ -14,6 +14,7 @@ import { CarritoComponent } from './components/carrito/carrito.component';
 
 import { AuthGuard } from './shared/guards/authentication.guard';
 import { AdminGuard } from './shared/guards/admin.guard';
+import { ProductoDetalleComponent } from './components/producto-detalle/producto-detalle.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path:'productos/categorias/',
     component: ProdListComponent
+  },
+  {
+    path:'productos/detalle',
+    component: ProductoDetalleComponent
   },
   {
     path:'admin/plist',

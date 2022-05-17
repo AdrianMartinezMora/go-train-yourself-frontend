@@ -123,10 +123,10 @@ export class AdminProdFormComponent implements OnInit {
         )
 
         Swal.fire({
-          title: 'Producto creado con exito.',
-          text: "Ahora que quieres hacer?",
+          title: 'Producto creado con éxito.',
+          text: "¿Ahora que quieres hacer?",
           showDenyButton: true,
-          confirmButtonText: 'Crear Otro Producto',
+          confirmButtonText: 'Crear otro producto',
           denyButtonText: `Ir a productos`,
         }).then((result) => {
 
