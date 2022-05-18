@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http'
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +21,7 @@ import { AdminCatFormComponent } from './components/admin/admin-cat-form/admin-c
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { UsuarioDetalleComponent } from './components/usuario-detalle/usuario-detalle.component';
 import { ProductoDetalleComponent } from './components/producto-detalle/producto-detalle.component';
+import { CatListComponent } from './components/cat-list/cat-list.component';
 
 @NgModule({
   declarations: [
@@ -38,12 +39,15 @@ import { ProductoDetalleComponent } from './components/producto-detalle/producto
     CarritoComponent,
     UsuarioDetalleComponent,
     ProductoDetalleComponent,
+    CatListComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     ProductsService,

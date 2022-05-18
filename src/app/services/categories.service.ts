@@ -19,12 +19,20 @@ export class CategoriesService {
     return this.http.get<Categoria[]>(`${environment.apiUrl}/categorias`);
   }
 
+  getCategory(id:number){
+    return this.http.get(`${environment.apiUrl}/categorias/${id}`)
+  }
+
   validCatname(categoria: string) {
     return this.http.get(`${environment.apiUrl}/categorias/catval/${categoria}`)
   }
 
   saveCat(categoria:Categoria){
-    return this.http.post(`${environment.apiUrl}/categorias/`, categoria)
+    if(categoria.id){
+      return this.http.put(`${environment.apiUrl}/categorias/${categoria.id}`,categoria)
+    }else{
+      return this.http.post(`${environment.apiUrl}/categorias/`, categoria)
+    }
   }
 
   deleteCat(id:number){

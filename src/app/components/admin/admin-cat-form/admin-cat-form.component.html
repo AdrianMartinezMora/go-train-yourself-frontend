@@ -3,19 +3,21 @@
 <div class="card">
     <div class="card-body">
 
-        <form #f="ngForm" (ngSubmit)="onSubmit(f)">
+        <form #f="ngForm" [formGroup]="form" (ngSubmit)="onSubmit(f)">
             <div class="image" style="float: left;">
-                <input type="file" ngModel required #foto="ngModel" class="d-none" name="photo" (change)="onPhotoSelected($event)" #photoInput>
-                <img [src]="photoSelected || '../../../../assets/images/noImage.png'" width="300" height="300" alt="No se ha subido ninguna imagen" (click)="photoInput.click()">
+                <input type="file" required class="d-none" name="photo" (change)="onPhotoSelected($event)" #photoInput>
+                <img *ngIf="modificando" [src]="photoSelected || imageUrl + modCat.foto" width="300" height="300" (click)="photoInput.click()">
+                <img *ngIf="!modificando" [src]="photoSelected || '../../../../assets/images/noImage.png'" width="300" height="300" alt="No se ha subido ninguna imagen" (click)="photoInput.click()">
             </div>
 
             <div style="float:right; width: 75%; padding-top: 100px;">
                 <div class="mb-3" style="padding-bottom: 20px ;">
-                    <input type="text" ngModel required #catName="ngModel" name="catName" placeholder="Nombre" class="form-control" autofocus>
+                    <input type="text" required formControlName="nombreCat" name="catName" placeholder="Nombre" class="form-control" autofocus>
                 </div>
 
                 <div class="mb-3">
-                    <input type="checkbox" class="btn-check" id="primaria" autocomplete="off" (click)="primaria=true">
+                    <input *ngIf="modCat.primaria" checked type="checkbox" class="btn-check" id="primaria" autocomplete="on" (click)="onClick()">
+                    <input *ngIf="!modCat.primaria" type="checkbox" class="btn-check" id="primaria" autocomplete="off" (click)="onClick()">
                     <label class="btn btn-outline-info" for="primaria">Categoria Primaria</label>
                 </div>
 

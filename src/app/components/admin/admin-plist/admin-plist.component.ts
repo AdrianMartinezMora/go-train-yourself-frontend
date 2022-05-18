@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Product } from 'src/app/models/Product';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2'
@@ -20,27 +20,28 @@ export class AdminPlistComponent implements OnInit {
 
   constructor(
     private prodService: ProductsService,
-    private route: ActivatedRoute
-    ) { }
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       let categoria = params['categoria'];
-      if(categoria != undefined){
+      if (categoria != undefined) {
         this.prodService.getProductsbyCategoria(categoria).subscribe((productos: Product[]) => this.productos = productos);
-      }else{
+      } else {
         this.prodService.getProducts().subscribe(
           (res: Product[]) => {
             this.productos = res;
             this.showProductos = this.productos;
-          } 
+          }
         )
       }
-      
+
     });
   }
 
-  filter(){
+  filter() {
     this.showProductos = this.productos.filter(p => {
       return p.nombreProd.toLowerCase().includes(this.search.toLowerCase());
     });
@@ -58,7 +59,7 @@ export class AdminPlistComponent implements OnInit {
       confirmButtonText: 'Si'
     }).then((result) => {
       if (result.isConfirmed) {
-        
+
         this.prodService.deleteProduct(idProduct).subscribe(
           (resp) => {
             let element = this.productos.filter((e: any) => e.id == idProduct)[0];
@@ -86,6 +87,11 @@ export class AdminPlistComponent implements OnInit {
 
       }
     })
+  }
+
+
+  editProduct(id: number) {
+    this.router.navigate(['/admin/productos/add/'+id])
   }
 
 }

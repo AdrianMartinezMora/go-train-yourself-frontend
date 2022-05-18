@@ -1,40 +1,50 @@
-<p *ngIf="fileError" style="color: red;font-size: larger; font-weight: bold; text-align: center;">La imagen es necesaria</p>
-<div class="card">
-    <div class="card-body">
+    <p *ngIf="fileError" style="color: red;font-size: larger; font-weight: bold; text-align: center;">La imagen es
+        necesaria</p>
+    <div class="card">
+        <div class="card-body">
 
-        <form #f="ngForm" (ngSubmit)="saveNewProduct(f)">
-            <div class="image" style="float: left;">
-                <input type="file" ngModel required #foto="ngModel" class="d-none" name="photo" (change)="onPhotoSelected($event)" #photoInput>
-                <img [src]="photoSelected || '../../../../assets/images/noImage.png'" width="300" height="300" alt="No se ha subido ninguna imagen" (click)="photoInput.click()">
-            </div>
-            <div style="float:right; width: 75%;">
-                <div class="mb-3" style="padding-bottom: 20px ;">
-                    <input type="text" ngModel required #prodName="ngModel" name="prodName" placeholder="Nombre" class="form-control" autofocus>
+            <form #f="ngForm" [formGroup]="form" (ngSubmit)="saveNewProduct(f)" >
+                <div class="image" style="float: left;">
+                    <input type="file" required class="d-none" name="photo"
+                        (change)="onPhotoSelected($event)" #photoInput>
+                        <img *ngIf="modificando" [src]="photoSelected || imageUrl + modProd.foto" width="300" height="300" (click)="photoInput.click()">
+                        <img *ngIf="!modificando" [src]="photoSelected || '../../../../assets/images/noImage.png'" width="300" height="300"
+                        alt="No se ha subido ninguna imagen" (click)="photoInput.click()">
                 </div>
+                <div style="float:right; width: 75%;">
+                    <div class="mb-3" style="padding-bottom: 20px ;">
+                        <input type="text" required formControlName="nombreProd" name="prodName" placeholder="Nombre"
+                            class="form-control" autofocus>
+                    </div>
 
-                <div class="mb-3" style="padding-bottom: 20px ;">
-                    <input type="number" ngModel required #precio="ngModel" name="precio" placeholder="Precio" class="form-control">
-                </div>
+                    <div class="mb-3" style="padding-bottom: 20px ;">
+                        <input type="number"  required formControlName="precio" name="precio" placeholder="Precio"
+                            class="form-control">
+                    </div>
 
-                <div class="mb-3">
-                    <input type="number" ngModel required #stock="ngModel" name="stock" style="padding-bottom: 20px ;" placeholder="Stock" class="form-control">
-                </div>
+                    <div class="mb-3">
+                        <input type="number"  required formControlName="stock" name="stock"
+                            style="padding-bottom: 20px ;" placeholder="Stock" class="form-control">
+                    </div>
 
-                <p style="text-align: center;">Seleccione las categorías a las que pertenece el nuevo producto</p>
-                <p *ngIf="catError" style="color: red;font-size: larger; font-weight: bold; text-align: center;">Hay que seleccionar mínimo una categoría</p>
-                <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group" style="padding-bottom: 20px;">
-                    <div *ngFor="let categoria of categorias" style="padding-right:5px ;">
-                        <input type="checkbox" class="btn-check" [id]="categoria.id" autocomplete="off" (click)="onchangeCheckbox({id: categoria.id, event: $event})">
-                        <label class="btn btn-outline-info" [for]="categoria.id">{{categoria.nombre}}</label>
+                    <p style="text-align: center;">Seleccione las categorías a las que pertenece el nuevo producto</p>
+                    <p *ngIf="catError" style="color: red;font-size: larger; font-weight: bold; text-align: center;">Hay
+                        que seleccionar mínimo una categoría</p>
+                    <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group"
+                        style="padding-bottom: 20px;">
+                        <div *ngFor="let categoria of categorias" style="padding-right:5px ;">
+                            <input type="checkbox" class="btn-check" [id]="categoria.id" autocomplete="off"
+                                (click)="onchangeCheckbox({id: categoria.id, event: $event})">
+                            <label class="btn btn-outline-info" [for]="categoria.id">{{categoria.nombre}}</label>
+                        </div>
+                    </div>
+
+                    <div class="d-grid gap-2">
+                        <button [disabled]="f.invalid" class="btn btn-outline-success">
+                            Guardar
+                        </button>
                     </div>
                 </div>
-
-                <div class="d-grid gap-2">
-                    <button [disabled]="f.invalid" class="btn btn-outline-success">
-                        Guardar
-                    </button>
-                </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>

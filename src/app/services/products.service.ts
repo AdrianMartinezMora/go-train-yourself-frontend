@@ -35,6 +35,13 @@ export class ProductsService {
   }
 
   saveProduct(product:Product){
-    return this.http.post(`${environment.apiUrl}/productos/`, product)
+    console.log(product)
+
+    if(product.id){
+      return this.http.put(`${environment.apiUrl}/productos/${product.id}`,product)
+    }else{
+      return this.http.post(`${environment.apiUrl}/productos/`, product)
+    }
+
   }
 }

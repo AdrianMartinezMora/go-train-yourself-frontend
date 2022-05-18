@@ -13,5 +13,9 @@ export class CatProdService {
   create(catprod:CatProd){
     return this.http.post(`${environment.apiUrl}/cat-prod/`, catprod)
   }
+  
+  delete(id:number){
+    return this.http.delete(`${environment.apiUrl}/cat-prod/${id}`)
+  }
 
 }

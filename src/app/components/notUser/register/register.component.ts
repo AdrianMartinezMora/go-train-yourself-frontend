@@ -72,7 +72,8 @@ export class RegisterComponent implements OnInit {
         nombreCompleto: f.value.realname,
         nombreUsuario: f.value.username,
         correo: f.value.email,
-        password: Md5.init(f.value.password)
+        password: Md5.init(f.value.password),
+        foto:'default.png'
       }
     }
 

@@ -15,16 +15,21 @@ import { CarritoComponent } from './components/carrito/carrito.component';
 import { AuthGuard } from './shared/guards/authentication.guard';
 import { AdminGuard } from './shared/guards/admin.guard';
 import { ProductoDetalleComponent } from './components/producto-detalle/producto-detalle.component';
+import { CatListComponent } from './components/cat-list/cat-list.component';
 
 const routes: Routes = [
   {
     path:'',
-    redirectTo: '/productos',
+    redirectTo: '/categorias',
     pathMatch: 'full'
   },
   {
     path:'productos',
     component: ProdListComponent
+  },
+  {
+    path:'categorias',
+    component: CatListComponent
   },
   {
     path:'productos/categorias/:categoria',
@@ -47,6 +52,21 @@ const routes: Routes = [
     path:'admin/productos/add',
     component: AdminProdFormComponent,
     canActivate: [AuthGuard, AdminGuard]
+  },
+  {
+    path:'admin/productos/add/:id',
+    component: AdminProdFormComponent,
+    canActivate: [AuthGuard, AdminGuard]
+  },
+  {
+    path:'admin/categorias/add/:id',
+    component: AdminCatFormComponent,
+    canActivate: [AuthGuard, AdminGuard]
+  },
+  {
+    path:'register/:id',
+    component: LoginComponent,
+    canActivate: [AuthGuard]
   },
   {
     path:'admin/catlist',

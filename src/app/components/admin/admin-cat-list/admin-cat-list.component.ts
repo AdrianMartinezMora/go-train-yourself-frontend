@@ -3,6 +3,7 @@ import { Categoria } from 'src/app/models/Categtoria';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2'
 import { CategoriesService } from 'src/app/services/categories.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-cat-list',
@@ -17,7 +18,8 @@ export class AdminCatListComponent implements OnInit {
   imageUrl: string = environment.imageUrl + '/categorias/';
 
   constructor(
-    private catSrv: CategoriesService
+    private catSrv: CategoriesService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -76,6 +78,10 @@ export class AdminCatListComponent implements OnInit {
 
       }
     })
+  }
+
+  editCat(id: number) {
+    this.router.navigate(['/admin/categorias/add/'+id])
   }
 
 }
