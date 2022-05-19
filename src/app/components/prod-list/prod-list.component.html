@@ -17,9 +17,9 @@
             <div *ngFor="let product of showProductos" class="col-md-6 col-lg-4 col-xl-3">
                 <div class="single-product" style="text-align: center;">
                     <div class="part-1">
-                        <img src="{{imageUrl + product.foto}}" height="250">
+                        <img src="{{imageUrl + product.foto}}" height="250" [routerLink]="'/productos/detalle/'+product.id">
                         <ul>
-                            <li><a href="#"><i class="fas fa-shopping-cart"></i></a></li>
+                            <li (click)="addCarrito()"><a><i class="fas fa-shopping-cart" ></i></a></li>
                         </ul>
                     </div>
                     <div class="part-2">

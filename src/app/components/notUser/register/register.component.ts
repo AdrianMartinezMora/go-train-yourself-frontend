@@ -32,6 +32,7 @@ export class RegisterComponent implements OnInit {
   modificando: boolean;
   hayFoto: boolean = true;
   id: number;
+  actualUserId:number;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -50,7 +51,8 @@ export class RegisterComponent implements OnInit {
       registerRealname: [''],
       registerUsername: [''],
       registerEmail: [''],
-      registerPassword: ['']
+      registerPassword: [''],
+      admin:[null]
     })
 
     this.usuarioSrv.getUsuarios().subscribe(
@@ -71,7 +73,8 @@ export class RegisterComponent implements OnInit {
             id: this.modUser.id,
             registerRealname: this.modUser.nombreCompleto,
             registerUsername: this.modUser.nombreUsuario,
-            registerEmail: this.modUser.correo
+            registerEmail: this.modUser.correo,
+            admin: this.modUser.admin
           })
         }
       )
@@ -98,7 +101,6 @@ export class RegisterComponent implements OnInit {
         if (f.value.registerUsername != this.user.nombreUsuario) {
           let catname = this.usuarios[i].nombreUsuario.toLowerCase();
           let name = f.value.registerUsername.toLowerCase();
-          console.log("Valor de formulario: " + name + ". Valor del Usuario: " + catname);
           
           if (catname == name) {
             this.invalidUsername = true;
@@ -120,7 +122,6 @@ export class RegisterComponent implements OnInit {
 
       let myNewFile = null;
       if (this.form.value.registerPassword) {
-        console.log(this.form.value.registerPassword);
 
         if (this.file) {
           let arr = this.file.name.split(".");
@@ -133,6 +134,7 @@ export class RegisterComponent implements OnInit {
             nombreUsuario: f.value.registerUsername,
             correo: f.value.registerEmail,
             password: Md5.init(f.value.registerPassword),
+            admin:this.form.value.admin,
             foto: myNewFile.name
           }
 
@@ -143,6 +145,7 @@ export class RegisterComponent implements OnInit {
             nombreUsuario: f.value.registerUsername,
             correo: f.value.registerEmail,
             password: Md5.init(f.value.registerPassword),
+            admin:this.form.value.admin,
             foto: this.modUser.foto
           }
         }
@@ -159,6 +162,7 @@ export class RegisterComponent implements OnInit {
             nombreUsuario: f.value.registerUsername,
             correo: f.value.registerEmail,
             password: this.modUser.password,
+            admin:this.form.value.admin,
             foto: myNewFile.name
           }
 
@@ -169,6 +173,7 @@ export class RegisterComponent implements OnInit {
             nombreUsuario: f.value.registerUsername,
             correo: f.value.registerEmail,
             password: this.modUser.password,
+            admin:this.form.value.admin,
             foto: this.modUser.foto
           }
         }

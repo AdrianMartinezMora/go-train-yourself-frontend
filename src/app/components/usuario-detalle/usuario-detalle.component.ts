@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import Usuario from 'src/app/models/Usuario';
 import { UsuariosService } from 'src/app/services/usuarios.service';
 import { environment } from 'src/environments/environment';
@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
   templateUrl: './usuario-detalle.component.html',
   styleUrls: ['./usuario-detalle.component.css']
 })
+
 export class UsuarioDetalleComponent implements OnInit {
 
   id: number;
@@ -17,7 +18,6 @@ export class UsuarioDetalleComponent implements OnInit {
   fecha: string;
 
   constructor(
-    private router: Router,
     private route: ActivatedRoute,
     private userSrv: UsuariosService) { }
 

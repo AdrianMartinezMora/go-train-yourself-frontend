@@ -41,7 +41,7 @@ const routes: Routes = [
     component: ProdListComponent
   },
   {
-    path:'productos/detalle',
+    path:'productos/detalle/:id',
     component: ProductoDetalleComponent
   },
   {

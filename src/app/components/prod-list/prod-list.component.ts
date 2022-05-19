@@ -5,6 +5,8 @@ import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 
 import { ProductsService } from '../../services/products.service'
+import { AccountService } from 'src/app/services/account.service';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-prod-list',
   templateUrl: './prod-list.component.html',
@@ -20,7 +22,8 @@ export class ProdListComponent implements OnInit {
   constructor(
     private prodService: ProductsService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private acSrv: AccountService
     ) {}
 
   ngOnInit(): void {
@@ -44,6 +47,21 @@ export class ProdListComponent implements OnInit {
     this.showProductos = this.productos.filter(p => {
       return p.nombreProd.toLowerCase().includes(this.search.toLowerCase());
     });
+  }
+
+  addCarrito() {
+
+    if (this.acSrv.usuarioValue) {
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'El producto se a añadido al carrito',
+        showConfirmButton: false,
+        timer: 1500
+      })
+    } else {
+      this.router.navigate(['login'])
+    }
   }
 
 

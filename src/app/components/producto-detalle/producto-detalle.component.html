@@ -1,1 +1,19 @@
-<p>Nombre producto</p>
+<div style="padding-bottom:50px ;">
+    <h3 style="text-align: center;">{{producto.nombreProd}}</h3>
+    <div class="card" style="text-align:justify ; font-weight: 1000;">
+        <div class="card-body">
+            &nbsp;
+            <img src="{{imageUrl + producto.foto}}" width="500" height="500" alt="No se ha subido ninguna imagen" style="float: left;margin-right: 60px;">
+
+            <p style="margin-bottom: 50px;">{{producto.nombreProd}}</p>
+
+            <p style="margin-bottom: 50px;">Precio: {{producto.precio}}</p>
+
+            <p style="margin-bottom: 50px;">Unidades en stock: {{producto.stock}}</p>
+
+            <button class="btn btn-outline-info" (click)="addCarrito()">Meter al carrito</button>
+        </div>
+
+    </div>
+</div>
+<app-prod-list></app-prod-list>
