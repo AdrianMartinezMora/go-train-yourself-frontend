@@ -16,6 +16,7 @@ import { AuthGuard } from './shared/guards/authentication.guard';
 import { AdminGuard } from './shared/guards/admin.guard';
 import { ProductoDetalleComponent } from './components/producto-detalle/producto-detalle.component';
 import { CatListComponent } from './components/cat-list/cat-list.component';
+import { UsuarioDetalleComponent } from './components/usuario-detalle/usuario-detalle.component';
 
 const routes: Routes = [
   {
@@ -65,7 +66,7 @@ const routes: Routes = [
   },
   {
     path:'register/:id',
-    component: LoginComponent,
+    component: RegisterComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -92,7 +93,11 @@ const routes: Routes = [
     path:'carrito',
     component: CarritoComponent
   },
-  
+  {
+    path:'usuario/detalle/:id',
+    component: UsuarioDetalleComponent,
+    canActivate: [AuthGuard]
+  },
   {
     path:'login',
     component: LoginComponent

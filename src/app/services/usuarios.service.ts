@@ -36,7 +36,12 @@ export class UsuariosService {
   }
 
   register(usuario: Usuario) {
-    return this.http.post(`${environment.apiUrl}/usuarios/`, usuario)
+    if(usuario.id){
+      return this.http.put(`${environment.apiUrl}/usuarios/${usuario.id}`, usuario)
+    }else{
+      return this.http.post(`${environment.apiUrl}/usuarios/`, usuario)
+    }
+    
   }
 
 }

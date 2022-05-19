@@ -71,7 +71,6 @@ export class AdminCatFormComponent implements OnInit {
           })
 
           if(this.modCat.primaria){
-            console.log("holi");
             this.primaria=true
           }
         }

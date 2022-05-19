@@ -1,1 +1,20 @@
-<p>usuario-detalle works!</p>
+<div>
+    <h3 style="text-align: center;">{{usuario.nombreUsuario}}</h3>
+    <div class="card" style="text-align:justify ; font-weight: 1000;">
+        <div class="card-body">
+            &nbsp;
+            <img src="{{imageUrl + usuario.foto}}" width="300" height="300" alt="No se ha subido ninguna imagen" style="float: left;margin-right: 60px;">
+
+            <p style="margin-bottom: 50px;">Nombre Real: {{usuario.nombreCompleto}}</p>
+
+            <p style="margin-bottom: 50px;">Nombre Usuario: {{usuario.nombreUsuario}}</p>
+
+            <p style="margin-bottom: 50px;">Correo electrónico: {{usuario.correo}}</p>
+
+            <p>Fecha de creación: {{fecha}}</p>
+
+            <button style="float: right;" class="btn btn-info" [routerLink]="'/register/'+usuario.id">Modificar</button>
+        </div>
+        
+    </div>
+</div>
