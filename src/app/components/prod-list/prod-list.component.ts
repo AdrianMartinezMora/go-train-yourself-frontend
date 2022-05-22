@@ -54,7 +54,7 @@ export class ProdListComponent implements OnInit {
   addCarrito(prod:Product) {
     if (this.acSrv.usuarioValue) {
 
-      this.cartSrv.meterProducto(prod)
+      this.cartSrv.meterProducto(prod.id, 1);
 
       Swal.fire({
         position: 'center',

@@ -46,7 +46,8 @@ export class ProductoDetalleComponent implements OnInit {
   addCarrito(prod:Product) {
 
     if (this.acSrv.usuarioValue) {
-      this.cartSrv.meterProducto(prod)
+      this.cartSrv.meterProducto(prod.id, 1);
+      //this.cartSrv.meterProducto(prod)
       Swal.fire({
         position: 'center',
         icon: 'success',

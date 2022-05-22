@@ -1,6 +1,9 @@
+import { DetallePedido } from "./DetallePedido";
+
 export interface Pedido {
     id?: number;
     idUsuario?: number;
-    precio_total?: number;
-    loc_entrega?: string;
+    precioTotal?: number;
+    locEntrega?: string;
+    detalle: DetallePedido[];
 }

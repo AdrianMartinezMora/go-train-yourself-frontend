@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { Carrito } from 'src/app/models/Carrito';
 import { DetallePedido } from 'src/app/models/DetallePedido';
+import { Pedido } from 'src/app/models/Pedido';
 import { Product } from 'src/app/models/Product';
+import { AccountService } from 'src/app/services/account.service';
 import { CarritoService } from 'src/app/services/carrito.service';
+import { ProductsService } from 'src/app/services/products.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -11,81 +15,60 @@ import { environment } from 'src/environments/environment';
 })
 export class CarritoComponent implements OnInit {
 
-  constructor(private carritoSrv: CarritoService) { }
-
-  carrito: Product[];
-  carritoMostrar: Product[];
-  detallePedido: DetallePedido[] = [];
+  pedido: Pedido = {detalle: [], locEntrega: ""};
+  productos: {[id: number]: Product} = {};
   imageUrl: string = environment.imageUrl + '/productos/';
   precioTotal: number = 0;
 
+  constructor(
+    private carritoSrv: CarritoService,
+    private accountSrv: AccountService,
+    private productosSrv: ProductsService
+    ) { }
+
   ngOnInit(): void {
-    this.carrito = ([JSON.parse(localStorage.getItem('carrito'))])[0];
-    this.calculateDetallePedido()
+    //Primero se cargan los productos porque son necesarios para el calculo inicial y final
+    this.productosSrv.getProducts().subscribe((productos: Product[]) => {
+      this.productos = {};
+      productos.forEach(prod => {
+        this.productos[prod.id] = prod;
+      });
+
+      
+      // Una vez cargados los productos nos subscribimos y cargamos el pedido
+      this.loadPedido(this.carritoSrv.carrito$.value);
+      this.carritoSrv.carrito$.subscribe((carrito: Carrito) => {
+        this.loadPedido(carrito);
+      });
+    });
+
+    this.pedido.idUsuario = this.accountSrv.usuarioValue.id;
+  }
+
+  anadir(idProd: number){
+    this.carritoSrv.meterProducto(idProd, 1);
+  }
+
+  restar(idProd: number){
+    this.carritoSrv.meterProducto(idProd, -1);
+  }
+
+  loadPedido(carrito: Carrito){
+    this.precioTotal = 0;
+    let detalles:DetallePedido[] = [];
+      for(let idProd in carrito){
+        this.precioTotal += carrito[idProd] * this.productos[idProd].precio;
+        
+        let detalle: DetallePedido = {
+          idProducto: +idProd,
+          cantidad: carrito[idProd]
+        };
+        detalles.push(detalle);
+      }
+      this.pedido.detalle = detalles;
   }
 
   sacarProducto(id: number) {
-    this.precioTotal = 0;
-    for (let i = 0; i < this.carritoMostrar.length; i++) {
-      if (id == this.carritoMostrar[i].id) {
-        console.log("sacar");
-
-        this.carritoSrv.sacarProducto(this.carritoMostrar[i])
-      }
-
-    }
-    this.carrito = ([JSON.parse(localStorage.getItem('carrito'))])[0];
-    this.calculateDetallePedido()
-
+    this.carritoSrv.meterProducto(id, -1);
   }
-
-  calculateDetallePedido() {
-    
-    this.detallePedido = []
-    this.carritoMostrar = [];
-    for (let i = 0; i < this.carrito.length; i++) {
-      let nometer: boolean = false;
-      let cant = 0;
-      let precio = 0;
-      let detProd: DetallePedido = {};
-
-      for (let j = 0; j < this.carrito.length; j++) {
-        if (this.carrito[i].id == this.carrito[j].id) {
-          cant++
-          precio += this.carrito[i].precio
-
-          detProd = {
-            id_producto: this.carrito[i].id,
-            precio: precio,
-            cantidad: cant
-          }
-
-        }
-      }
-
-      for (let h = 0; h < this.detallePedido.length; h++) {
-        if (this.detallePedido[h].id_producto == detProd.id_producto) {
-          nometer = true;
-        }
-
-      }
-      if (!nometer) {
-        this.detallePedido.push(detProd);
-      }
-
-    }
-
-    for (let i = 0; i < this.detallePedido.length; i++) {
-      this.precioTotal += this.detallePedido[i].precio
-      let cont = 0;
-      for (let j = 0; j < this.carrito.length; j++) {
-        if (this.detallePedido[i].id_producto == this.carrito[j].id && cont == 0) {
-          this.carritoMostrar.push(this.carrito[j])
-          cont++
-        }
-      }
-    }
-    this.precioTotal = Math.round((this.precioTotal + Number.EPSILON) * 100) / 100;
-  }
-
 }

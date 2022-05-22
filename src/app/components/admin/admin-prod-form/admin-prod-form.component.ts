@@ -161,12 +161,12 @@ export class AdminProdFormComponent implements OnInit {
   
               for (let i = 0; i < this.categoriasSelected.length; i++) {
                 let catprod: CatProd = {
-                  id_prod: this.form.value.id,
-                  id_cat: this.categoriasSelected[i]
+                  idProd: this.form.value.id,
+                  idCat: this.categoriasSelected[i]
                 }
 
                 if(i==0){
-                  this.catProdSrv.delete(catprod.id_prod).subscribe(res => console.log(res), err => console.log(err))
+                  this.catProdSrv.delete(catprod.idProd).subscribe(res => console.log(res), err => console.log(err))
                 }
                 
                 this.catProdSrv.create(catprod).subscribe(res => console.log(res), err => console.log(err))
@@ -215,8 +215,8 @@ export class AdminProdFormComponent implements OnInit {
   
               for (let i = 0; i < this.categoriasSelected.length; i++) {
                 let catprod: CatProd = {
-                  id_prod: this.newProdId.insertId,
-                  id_cat: this.categoriasSelected[i]
+                  idProd: this.newProdId.insertId,
+                  idCat: this.categoriasSelected[i]
                 }
                 this.catProdSrv.create(catprod).subscribe(res => console.log(res), err => console.log(err))
               }
