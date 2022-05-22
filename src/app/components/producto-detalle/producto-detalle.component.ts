@@ -5,6 +5,7 @@ import { ProductsService } from 'src/app/services/products.service';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { AccountService } from 'src/app/services/account.service';
+import { CarritoService } from 'src/app/services/carrito.service';
 
 
 @Component({
@@ -18,11 +19,19 @@ export class ProductoDetalleComponent implements OnInit {
 
   imageUrl: string = environment.imageUrl + '/productos/';
 
+  url:string;
   producto: Product;
 
-  constructor(private productSrv: ProductsService, private route: ActivatedRoute, private acSrv: AccountService, private router: Router) { }
+  constructor(
+    private productSrv: ProductsService, 
+    private route: ActivatedRoute, 
+    private acSrv: AccountService, 
+    private router: Router,
+    private cartSrv: CarritoService) {}
 
   ngOnInit(): void {
+    this.url=window.location.href;
+     
     //Comprobar si hay una categoria para modificar
     if (this.route.snapshot.paramMap.get('id')) {
       this.id = +this.route.snapshot.paramMap.get('id')
@@ -34,9 +43,10 @@ export class ProductoDetalleComponent implements OnInit {
     }
   }
 
-  addCarrito() {
+  addCarrito(prod:Product) {
 
     if (this.acSrv.usuarioValue) {
+      this.cartSrv.meterProducto(prod)
       Swal.fire({
         position: 'center',
         icon: 'success',
@@ -49,6 +59,13 @@ export class ProductoDetalleComponent implements OnInit {
     }
   }
 
+  onClick(){
+    console.log("yepa");
+    
+    if(this.url!= window.location.href){
+      window.location.reload()
+    }
+  }
 
 
 }

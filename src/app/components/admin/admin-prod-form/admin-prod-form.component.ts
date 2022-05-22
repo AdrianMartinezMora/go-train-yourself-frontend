@@ -164,7 +164,11 @@ export class AdminProdFormComponent implements OnInit {
                   id_prod: this.form.value.id,
                   id_cat: this.categoriasSelected[i]
                 }
-                this.catProdSrv.delete(catprod.id_prod).subscribe(res => console.log(res), err => console.log(err))
+
+                if(i==0){
+                  this.catProdSrv.delete(catprod.id_prod).subscribe(res => console.log(res), err => console.log(err))
+                }
+                
                 this.catProdSrv.create(catprod).subscribe(res => console.log(res), err => console.log(err))
               }
             },

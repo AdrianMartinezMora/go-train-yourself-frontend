@@ -34,8 +34,10 @@
                     </div>
 
                     <div class="d-grid gap-2">
-                        <button type="submit" [disabled]="f.invalid" class="btn btn-outline-info">Iniciar Sesión &nbsp;&nbsp;&nbsp;<i
+                        <button *ngIf="!modificando" type="submit" [disabled]="f.invalid" class="btn btn-outline-info">Registrarse &nbsp;&nbsp;&nbsp;<i
                             class="fas fa-sign-in-alt"></i></button>
+                        <button *ngIf="modificando" type="submit" [disabled]="f.invalid" class="btn btn-outline-info">Actualizar Usuario &nbsp;&nbsp;&nbsp;<i
+                                class="fas fa-sign-in-alt"></i></button>
                     </div>
                 </div>
             </form>

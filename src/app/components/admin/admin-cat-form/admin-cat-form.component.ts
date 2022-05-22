@@ -140,9 +140,6 @@ export class AdminCatFormComponent implements OnInit {
           }
 
         }
-
-        console.log(this.modCat);
-        
   
           this.catSrv.saveCat(this.modCat).subscribe(
             res => {
@@ -173,7 +170,7 @@ export class AdminCatFormComponent implements OnInit {
     this.invalidName = false;
     for (let i = 0; i < this.categorias.length; i++) {
       let catname = this.categorias[i].nombre.toLowerCase();
-      let name = f.value.catName.toLocaleLowerCase();
+      let name = f.value.nombreCat.toLocaleLowerCase();
       if (catname === name) {
         this.invalidName = true;
       }
@@ -186,7 +183,7 @@ export class AdminCatFormComponent implements OnInit {
         const myNewFile = new File([this.file], uuid() + '.' + ext)
 
         this.categoria = {
-          nombre: f.value.catName,
+          nombre: f.value.nombreCat,
           foto: myNewFile.name,
           primaria: this.primaria
         }

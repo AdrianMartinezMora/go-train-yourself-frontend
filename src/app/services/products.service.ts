@@ -35,8 +35,6 @@ export class ProductsService {
   }
 
   saveProduct(product:Product){
-    console.log(product)
-
     if(product.id){
       return this.http.put(`${environment.apiUrl}/productos/${product.id}`,product)
     }else{

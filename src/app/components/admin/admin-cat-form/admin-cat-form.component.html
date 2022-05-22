@@ -7,7 +7,7 @@
             <div class="image" style="float: left;">
                 <input type="file" required class="d-none" name="photo" (change)="onPhotoSelected($event)" #photoInput>
                 <img *ngIf="modificando" [src]="photoSelected || imageUrl + modCat.foto" width="300" height="300" (click)="photoInput.click()">
-                <img *ngIf="!modificando" [src]="photoSelected || '../../../../assets/images/noImage.png'" width="300" height="300" alt="No se ha subido ninguna imagen" (click)="photoInput.click()">
+                <img *ngIf="!modificando" required [src]="photoSelected || '../../../../assets/images/noImage.png'" width="300" height="300" alt="No se ha subido ninguna imagen" (click)="photoInput.click()">
             </div>
 
             <div style="float:right; width: 75%; padding-top: 100px;">

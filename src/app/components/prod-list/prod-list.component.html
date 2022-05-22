@@ -19,7 +19,7 @@
                     <div class="part-1">
                         <img src="{{imageUrl + product.foto}}" height="250" [routerLink]="'/productos/detalle/'+product.id">
                         <ul>
-                            <li (click)="addCarrito()"><a><i class="fas fa-shopping-cart" ></i></a></li>
+                            <li (click)="addCarrito(product)"><a><i class="fas fa-shopping-cart" ></i></a></li>
                         </ul>
                     </div>
                     <div class="part-2">

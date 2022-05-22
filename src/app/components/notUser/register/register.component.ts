@@ -113,7 +113,6 @@ export class RegisterComponent implements OnInit {
         if (f.value.registerEmail != this.user.correo) {
           let catname = this.usuarios[i].correo.toLowerCase();
           let name = f.value.registerEmail.toLowerCase();
-          console.log("Valor de formulario: " + name + ". Valor del Usuario: " + catname);
           if (catname == name) {
             this.invalidEmail = true;
           }

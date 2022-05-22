@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="usuario.foto">
     <h3 style="text-align: center;">{{usuario.nombreUsuario}}</h3>
     <div class="card" style="text-align:justify ; font-weight: 1000;">
         <div class="card-body">
@@ -15,6 +15,6 @@
 
             <button style="float: right;" class="btn btn-info" [routerLink]="'/register/'+usuario.id">Modificar</button>
         </div>
-        
+
     </div>
 </div>

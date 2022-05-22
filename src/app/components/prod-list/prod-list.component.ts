@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { ProductsService } from '../../services/products.service'
 import { AccountService } from 'src/app/services/account.service';
 import Swal from 'sweetalert2';
+import { CarritoService } from 'src/app/services/carrito.service';
 @Component({
   selector: 'app-prod-list',
   templateUrl: './prod-list.component.html',
@@ -23,7 +24,8 @@ export class ProdListComponent implements OnInit {
     private prodService: ProductsService,
     private route: ActivatedRoute,
     private router: Router,
-    private acSrv: AccountService
+    private acSrv: AccountService,
+    private cartSrv: CarritoService
     ) {}
 
   ngOnInit(): void {
@@ -49,9 +51,11 @@ export class ProdListComponent implements OnInit {
     });
   }
 
-  addCarrito() {
-
+  addCarrito(prod:Product) {
     if (this.acSrv.usuarioValue) {
+
+      this.cartSrv.meterProducto(prod)
+
       Swal.fire({
         position: 'center',
         icon: 'success',

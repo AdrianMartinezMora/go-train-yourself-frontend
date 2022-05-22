@@ -1,5 +1,5 @@
-<div style="padding-bottom:50px ;">
-    <h3 style="text-align: center;">{{producto.nombreProd}}</h3>
+<div *ngIf="producto" style="padding-bottom:50px ;">
+    <h3 style="text-align: center;">"{{producto.nombreProd}}"</h3>
     <div class="card" style="text-align:justify ; font-weight: 1000;">
         <div class="card-body">
             &nbsp;
@@ -11,9 +11,9 @@
 
             <p style="margin-bottom: 50px;">Unidades en stock: {{producto.stock}}</p>
 
-            <button class="btn btn-outline-info" (click)="addCarrito()">Meter al carrito</button>
+            <button class="btn btn-outline-info" (click)="addCarrito(producto)">Meter al carrito</button>
         </div>
 
     </div>
 </div>
-<app-prod-list></app-prod-list>
+<app-prod-list (click)="onClick()"></app-prod-list>
