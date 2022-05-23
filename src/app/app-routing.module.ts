@@ -17,6 +17,8 @@ import { AdminGuard } from './shared/guards/admin.guard';
 import { ProductoDetalleComponent } from './components/producto-detalle/producto-detalle.component';
 import { CatListComponent } from './components/cat-list/cat-list.component';
 import { UsuarioDetalleComponent } from './components/usuario-detalle/usuario-detalle.component';
+import { PedidosListComponent } from './components/pedidos-list/pedidos-list.component';
+import { PedidoDetalleComponent } from './components/pedido-detalle/pedido-detalle.component';
 
 const routes: Routes = [
   {
@@ -96,6 +98,21 @@ const routes: Routes = [
   {
     path:'usuario/detalle/:id',
     component: UsuarioDetalleComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path:'admin/pedlist',
+    component: PedidosListComponent,
+    canActivate: [AuthGuard, AdminGuard]
+  },
+  {
+    path:'pedlist/:id',
+    component: PedidosListComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path:'detallePedido/:id',
+    component: PedidoDetalleComponent,
     canActivate: [AuthGuard]
   },
   {

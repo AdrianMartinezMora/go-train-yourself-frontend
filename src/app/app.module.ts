@@ -22,6 +22,8 @@ import { CarritoComponent } from './components/carrito/carrito.component';
 import { UsuarioDetalleComponent } from './components/usuario-detalle/usuario-detalle.component';
 import { ProductoDetalleComponent } from './components/producto-detalle/producto-detalle.component';
 import { CatListComponent } from './components/cat-list/cat-list.component';
+import { PedidosListComponent } from './components/pedidos-list/pedidos-list.component';
+import { PedidoDetalleComponent } from './components/pedido-detalle/pedido-detalle.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { CatListComponent } from './components/cat-list/cat-list.component';
     UsuarioDetalleComponent,
     ProductoDetalleComponent,
     CatListComponent,
+    PedidosListComponent,
+    PedidoDetalleComponent,
   ],
   imports: [
     BrowserModule,

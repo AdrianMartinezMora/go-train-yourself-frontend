@@ -6,6 +6,7 @@ import * as jwt_decode from 'jwt-decode';
 import { Router } from '@angular/router';
 import { Product } from '../models/Product';
 import { Carrito } from '../models/Carrito';
+import { Pedido } from '../models/Pedido';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class CarritoService {
 
   public carrito$: BehaviorSubject<Carrito> = new BehaviorSubject<Carrito>({});
   private carrito = this.carrito$.value;
-  constructor() {
+  constructor(private http: HttpClient) {
     this.loadCarrito();
   }
 
@@ -40,6 +41,10 @@ export class CarritoService {
       this.carrito = saved;
       this.carrito$.next(this.carrito);
     }
+  }
+
+  create(pedido:Pedido){
+    return this.http.post(`${environment.apiUrl}/pedidos/`, pedido)
   }
 
 
