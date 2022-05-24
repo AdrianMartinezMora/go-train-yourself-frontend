@@ -1,1 +1,25 @@
-<p>pedido-detalle works!</p>
+<div class="card" style="text-align: center;background-color: #1f9bcf;color: white; font-weight: bold; font-size: 3ch; width: 80%;float: left;">Producto</div>
+<div class="card" style="text-align: center;background-color: #1f9bcf;color: white; font-weight: bold; font-size: 3ch; width: 20%; float: right;">Cantidad</div>
+<div *ngFor="let detalle of detallesPedidos;">
+    <div style="width: 13%; float: left;">
+        <div class="card" style="height: 150px;">
+            <img src="{{imageUrl + detalle.foto}}" width="100%" height="100%" [routerLink]="'/productos/detalle/'+detalle.id">
+        </div>
+    </div>
+    <div style="width: 67%; float: left;">
+        <div class="card" style="height: 150px;padding-left: 10px;">
+            <p style="margin-top: 40px;">Nombre: {{detalle.nombreProd}}</p>
+            <p>Precio Unidad: {{detalle.precio}} €</p>
+        </div>
+    </div>
+    <div style="width: 20%; float: right;">
+
+
+        <div style="text-align: center; height: 150px;" class="card">
+            <p style="margin-top: 60px ;">{{detalle.cantidad}}</p>
+        </div>
+
+
+    </div>
+</div>
+<div style="text-align: center;background-color: #1f9bcf;color: white; font-weight: bold; font-size: 3ch;">Total: {{precioTotal}} €</div>

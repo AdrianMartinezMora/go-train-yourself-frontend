@@ -1,1 +1,21 @@
-<p>admin-order-list works!</p>
+<table class="table table-striped" style="text-align: center;">
+    <thead>
+        <tr>
+            <th scope="col">Nº#</th>
+            <th scope="col">Usuario</th>
+            <th scope="col">Fecha</th>
+            <th scope="col">Coste</th>
+            <th scope="col">Ver</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let pedido of pedidosMostrar ">
+            <th scope="row">{{pedido.id}}</th>
+            <td>{{pedido.usuario}}</td>
+            <td>{{pedido.fecha}}</td>
+            <td>{{pedido.precioTotal}}€</td>
+            <td> <button class="btn btn-outline-info" [routerLink]="'../../orderDet/'+pedido.id">Ver</button> </td>
+        </tr>
+    </tbody>
+</table>

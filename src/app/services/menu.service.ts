@@ -55,7 +55,7 @@ export class MenuService {
     },
     {
       name: "Pedidos",
-      link: '/admin/orderlist',
+      link: '/admin/orderList',
       visible: false
     }
   ];

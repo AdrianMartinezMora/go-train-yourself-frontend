@@ -2,6 +2,7 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+/*
 //IP DE ODEC
 
 export const environment = {
@@ -11,7 +12,7 @@ export const environment = {
   imageUrl: 'http://192.168.4.118:4000/uploads'
 };
 
-/*
+*/
 //IP DE CASA
 export const environment = {
   production: false,

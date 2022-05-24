@@ -87,11 +87,6 @@ const routes: Routes = [
     canActivate: [AuthGuard, AdminGuard]
   },
   {
-    path:'admin/orderlist',
-    component: AdminOrderListComponent,
-    canActivate: [AuthGuard, AdminGuard]
-  },
-  {
     path:'carrito',
     component: CarritoComponent
   },
@@ -101,17 +96,17 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path:'admin/pedlist',
-    component: PedidosListComponent,
+    path:'admin/orderList',
+    component: AdminOrderListComponent,
     canActivate: [AuthGuard, AdminGuard]
   },
   {
-    path:'pedlist/:id',
+    path:'orderList/:id',
     component: PedidosListComponent,
     canActivate: [AuthGuard]
   },
   {
-    path:'detallePedido/:id',
+    path:'orderDet/:id',
     component: PedidoDetalleComponent,
     canActivate: [AuthGuard]
   },
