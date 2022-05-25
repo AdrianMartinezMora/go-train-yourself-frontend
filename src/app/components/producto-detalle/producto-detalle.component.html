@@ -10,8 +10,18 @@
             <p style="margin-bottom: 50px;">Precio: {{producto.precio}}</p>
 
             <p style="margin-bottom: 50px;">Unidades en stock: {{producto.stock}}</p>
+            <div style="width: 50%; float: left;">
 
-            <button class="btn btn-outline-info" (click)="addCarrito(producto)">Meter al carrito</button>
+                <button class="btn btn-outline-info" style="float: left; margin-right: 20px;" (click)="addCarrito(producto)">Meter al carrito</button>
+                
+                <select [(ngModel)]="cant" class="form-select" style="float: left; width: 26%;">
+                    <option selected value="1">1</option>
+                    <option *ngFor="let num of cantidad" [value]="num">{{num}}</option>
+                  </select>
+
+            </div>
+            
+            
         </div>
 
     </div>

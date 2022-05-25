@@ -19,6 +19,10 @@ import { CatListComponent } from './components/cat-list/cat-list.component';
 import { UsuarioDetalleComponent } from './components/usuario-detalle/usuario-detalle.component';
 import { PedidosListComponent } from './components/pedidos-list/pedidos-list.component';
 import { PedidoDetalleComponent } from './components/pedido-detalle/pedido-detalle.component';
+import { PPrivacyComponent } from './components/p-privacy/p-privacy.component';
+import { ProdDisComponent } from './components/admin/prod-dis/prod-dis.component';
+import { CatDisComponent } from './components/admin/cat-dis/cat-dis.component';
+import { UserDisComponent } from './components/admin/user-dis/user-dis.component';
 
 const routes: Routes = [
   {
@@ -101,6 +105,21 @@ const routes: Routes = [
     canActivate: [AuthGuard, AdminGuard]
   },
   {
+    path:'admin/prodDis',
+    component: ProdDisComponent,
+    canActivate: [AuthGuard, AdminGuard]
+  },
+  {
+    path:'admin/catDis',
+    component: CatDisComponent,
+    canActivate: [AuthGuard, AdminGuard]
+  },
+  {
+    path:'admin/userDis',
+    component: UserDisComponent,
+    canActivate: [AuthGuard, AdminGuard]
+  },
+  {
     path:'orderList/:id',
     component: PedidosListComponent,
     canActivate: [AuthGuard]
@@ -117,6 +136,10 @@ const routes: Routes = [
   {
     path:'register',
     component: RegisterComponent
+  },
+  {
+    path:'pPolicy',
+    component: PPrivacyComponent
   }
 
 

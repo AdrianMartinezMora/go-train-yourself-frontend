@@ -19,6 +19,10 @@ export class CategoriesService {
     return this.http.get<Categoria[]>(`${environment.apiUrl}/categorias`);
   }
 
+  getDisCategorias() {
+    return this.http.get(`${environment.apiUrl}/categorias/dis/`)
+  }
+
   getCategory(id:number){
     return this.http.get(`${environment.apiUrl}/categorias/${id}`)
   }
@@ -37,6 +41,10 @@ export class CategoriesService {
 
   deleteCat(id:number){
     return this.http.delete(`${environment.apiUrl}/categorias/${id}`)
+  }
+
+  enableCat(id:number){
+    return this.http.delete(`${environment.apiUrl}/categorias/dis/${id}`)
   }
 
   

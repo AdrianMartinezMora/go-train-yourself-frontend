@@ -6,11 +6,11 @@ import { CategoriesService } from 'src/app/services/categories.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-admin-cat-list',
-  templateUrl: './admin-cat-list.component.html',
-  styleUrls: ['./admin-cat-list.component.css']
+  selector: 'app-cat-dis',
+  templateUrl: './cat-dis.component.html',
+  styleUrls: ['./cat-dis.component.css']
 })
-export class AdminCatListComponent implements OnInit {
+export class CatDisComponent implements OnInit {
 
   search: string = '';
   categorias: Categoria[] = [];
@@ -23,7 +23,7 @@ export class AdminCatListComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.catSrv.getCategories().subscribe(
+    this.catSrv.getDisCategorias().subscribe(
       (res: Categoria[]) => {
         this.categorias = res
         this.showCategorias = res
@@ -38,11 +38,10 @@ export class AdminCatListComponent implements OnInit {
     });
   }
 
-  deleteCat(idCat: number) {
+  enableCat(idCat: number) {
 
     Swal.fire({
-      title: '¿Eliminar Categoría?',
-      text: "Esta acción no podrá ser revertida",
+      title: '¿Restaurar Categoría?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -52,14 +51,14 @@ export class AdminCatListComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         
-        this.catSrv.deleteCat(idCat).subscribe(
+        this.catSrv.enableCat(idCat).subscribe(
           (resp) => {
             let element = this.showCategorias.filter((e: any) => e.id == idCat)[0];
             this.showCategorias.splice(this.showCategorias.indexOf(element), 1)
 
             Swal.fire(
-              'Eliminada!',
-              'La categoria se ha eliminado con éxito',
+              'Restaurada!',
+              'La categoria se ha restaurado con éxito',
               'success'
             )
 
@@ -80,9 +79,4 @@ export class AdminCatListComponent implements OnInit {
       }
     })
   }
-
-  editCat(id: number) {
-    this.router.navigate(['/admin/categorias/add/'+id])
-  }
-
 }

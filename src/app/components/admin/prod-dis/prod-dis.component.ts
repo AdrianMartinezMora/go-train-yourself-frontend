@@ -5,13 +5,12 @@ import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2'
 import { ProductsService } from '../../../services/products.service'
 
-
 @Component({
-  selector: 'app-plist',
-  templateUrl: './admin-plist.component.html',
-  styleUrls: ['./admin-plist.component.css']
+  selector: 'app-prod-dis',
+  templateUrl: './prod-dis.component.html',
+  styleUrls: ['./prod-dis.component.css']
 })
-export class AdminPlistComponent implements OnInit {
+export class ProdDisComponent implements OnInit {
 
   search: string = '';
   productos: Product[] = [];
@@ -30,7 +29,7 @@ export class AdminPlistComponent implements OnInit {
       if (categoria != undefined) {
         this.prodService.getProductsbyCategoria(categoria).subscribe((productos: Product[]) => this.productos = productos);
       } else {
-        this.prodService.getProducts().subscribe(
+        this.prodService.getDisProducts().subscribe(
           (res: Product[]) => {
             this.productos = res;
             this.showProductos = this.productos;
@@ -47,28 +46,27 @@ export class AdminPlistComponent implements OnInit {
     });
   }
 
-  deleteProduct(idProduct: number) {
+  enableProduct(idProduct: number) {
 
     Swal.fire({
-      title: '¿Eliminar Producto?',
-      text: "Esta acción no podrá ser revertida",
+      title: '¿Restaurar Producto?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
+      cancelButtonText:'Cancelar',
       confirmButtonText: 'Si',
-      cancelButtonText: 'Cancelar'
     }).then((result) => {
       if (result.isConfirmed) {
 
-        this.prodService.deleteProduct(idProduct).subscribe(
+        this.prodService.enableProduct(idProduct).subscribe(
           (resp) => {
             let element = this.showProductos.filter((e: any) => e.id == idProduct)[0];
             this.showProductos.splice(this.showProductos.indexOf(element), 1)
 
             Swal.fire(
-              '¡Eliminado!',
-              'El producto se ha eliminado con éxito',
+              '¡Restaurado!',
+              'El producto se ha restaurado con éxito',
               'success'
             )
 
@@ -77,7 +75,7 @@ export class AdminPlistComponent implements OnInit {
 
             Swal.fire(
               'Error',
-              'No se ha podido eliminar',
+              'No se ha podido restaurar',
               'error'
             )
 
@@ -88,11 +86,6 @@ export class AdminPlistComponent implements OnInit {
 
       }
     })
-  }
-
-
-  editProduct(id: number) {
-    this.router.navigate(['/admin/productos/add/'+id])
   }
 
 }

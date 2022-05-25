@@ -24,6 +24,11 @@ import { ProductoDetalleComponent } from './components/producto-detalle/producto
 import { CatListComponent } from './components/cat-list/cat-list.component';
 import { PedidosListComponent } from './components/pedidos-list/pedidos-list.component';
 import { PedidoDetalleComponent } from './components/pedido-detalle/pedido-detalle.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { PPrivacyComponent } from './components/p-privacy/p-privacy.component';
+import { ProdDisComponent } from './components/admin/prod-dis/prod-dis.component';
+import { CatDisComponent } from './components/admin/cat-dis/cat-dis.component';
+import { UserDisComponent } from './components/admin/user-dis/user-dis.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +49,11 @@ import { PedidoDetalleComponent } from './components/pedido-detalle/pedido-detal
     CatListComponent,
     PedidosListComponent,
     PedidoDetalleComponent,
+    FooterComponent,
+    PPrivacyComponent,
+    ProdDisComponent,
+    CatDisComponent,
+    UserDisComponent,
   ],
   imports: [
     BrowserModule,

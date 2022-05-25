@@ -20,6 +20,8 @@ export class CarritoService {
   }
 
   meterProducto(idProducto: number, cantidad: number){
+    console.log(cantidad);
+    
     if(!this.carrito[idProducto])
       this.carrito[idProducto] = 0;
     this.carrito[idProducto] += cantidad;
@@ -35,12 +37,24 @@ export class CarritoService {
     localStorage.setItem("carrito", JSON.stringify(this.carrito));
   }
 
+  eliminarProducto(idProducto:number){
+    delete this.carrito[idProducto];
+    this.carrito$.next(this.carrito);
+    this.saveCarrito();
+  }
+
   loadCarrito(){
     let saved = JSON.parse(localStorage.getItem("carrito"));
     if(saved){
       this.carrito = saved;
       this.carrito$.next(this.carrito);
     }
+  }
+
+  limpiarcarrito(){
+    this.carrito={};
+    this.carrito$=new BehaviorSubject<Carrito>({})
+    localStorage.removeItem('carrito');
   }
 
   create(pedido:Pedido){

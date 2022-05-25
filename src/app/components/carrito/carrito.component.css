@@ -1,0 +1,13 @@
+.btnDel{
+    position: absolute;
+    background-color: red; 
+    color: white;
+    border-radius: 15%;
+    transition: 0.3s;
+    font-size: 1.5ch;
+}
+
+.btnDel:hover{
+    background-color: white; 
+    color: red;
+}

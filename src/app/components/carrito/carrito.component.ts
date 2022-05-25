@@ -58,6 +58,10 @@ export class CarritoComponent implements OnInit {
     this.pedido.idUsuario = this.accountSrv.usuarioValue.id;
   }
 
+  eliminar(idProd: number) {
+    this.carritoSrv.eliminarProducto(idProd);
+  }
+
   anadir(idProd: number) {
     this.carritoSrv.meterProducto(idProd, 1);
   }
@@ -95,7 +99,7 @@ export class CarritoComponent implements OnInit {
     } else {
       this.carritoSrv.create(this.pedido).subscribe(res => {
 
-        localStorage.removeItem('carrito');
+        this.carritoSrv.limpiarcarrito();
 
         Swal.fire({
           title: 'Pedido realizado con éxito.',

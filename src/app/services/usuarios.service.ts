@@ -15,6 +15,10 @@ export class UsuariosService {
     return this.http.get(`${environment.apiUrl}/usuarios/`)
   }
 
+  getDisUsuarios() {
+    return this.http.get(`${environment.apiUrl}/usuarios/dis/`)
+  }
+
   getUsuario(id: number) {
     return this.http.get(`${environment.apiUrl}/usuarios/${id}`)
   }
@@ -29,6 +33,10 @@ export class UsuariosService {
 
   deleteUsuario(id: number) {
     return this.http.delete(`${environment.apiUrl}/usuarios/${id}`)
+  }
+  
+  enableUsuario(id: number) {
+    return this.http.delete(`${environment.apiUrl}/usuarios/dis/${id}`)
   }
 
   updateUsuario(id: number, updatedUsuario: Usuario) {

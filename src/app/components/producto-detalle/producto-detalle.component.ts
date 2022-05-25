@@ -21,6 +21,8 @@ export class ProductoDetalleComponent implements OnInit {
 
   url:string;
   producto: Product;
+  cantidad:number[]=[];
+  cant:number = 1;
 
   constructor(
     private productSrv: ProductsService, 
@@ -30,6 +32,11 @@ export class ProductoDetalleComponent implements OnInit {
     private cartSrv: CarritoService) {}
 
   ngOnInit(): void {
+
+    for (let i = 2; i <= 50; i++) {
+      this.cantidad.push(i)      
+    }
+    
     this.url=window.location.href;
      
     //Comprobar si hay una categoria para modificar
@@ -46,12 +53,15 @@ export class ProductoDetalleComponent implements OnInit {
   addCarrito(prod:Product) {
 
     if (this.acSrv.usuarioValue) {
-      this.cartSrv.meterProducto(prod.id, 1);
+      for (let i = 0; i < this.cant; i++) {
+        this.cartSrv.meterProducto(prod.id, 1);
+      }
+      
       //this.cartSrv.meterProducto(prod)
       Swal.fire({
         position: 'center',
         icon: 'success',
-        title: 'El producto se a añadido al carrito',
+        title: 'El producto se ha añadido al carrito',
         showConfirmButton: false,
         timer: 1500
       })
@@ -61,8 +71,6 @@ export class ProductoDetalleComponent implements OnInit {
   }
 
   onClick(){
-    console.log("yepa");
-    
     if(this.url!= window.location.href){
       window.location.reload()
     }

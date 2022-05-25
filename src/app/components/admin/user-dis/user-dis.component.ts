@@ -4,13 +4,13 @@ import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2'
 import { UsuariosService } from 'src/app/services/usuarios.service';
 
-
 @Component({
-  selector: 'app-admin-user-list',
-  templateUrl: './admin-user-list.component.html',
-  styleUrls: ['./admin-user-list.component.css']
+  selector: 'app-user-dis',
+  templateUrl: './user-dis.component.html',
+  styleUrls: ['./user-dis.component.css']
 })
-export class AdminUserListComponent implements OnInit {
+export class UserDisComponent implements OnInit {
+
   search: string = '';
   usuarios: Usuario[] = [];
   showUsuarios: Usuario[] = [];
@@ -21,7 +21,7 @@ export class AdminUserListComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.usuarioSrv.getUsuarios().subscribe(
+    this.usuarioSrv.getDisUsuarios().subscribe(
       (res: Usuario[]) => {
         this.usuarios = res
         this.showUsuarios = res
@@ -36,11 +36,10 @@ export class AdminUserListComponent implements OnInit {
     });
   }
 
-  deleteUser(idUser: number) {
+  enableUser(idUser: number) {
 
     Swal.fire({
-      title: '¿Eliminar Usuario?',
-      text: "Esta acción no podrá ser revertida",
+      title: '¿Restaurar Usuario?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonColor: '#3085d6',
@@ -50,14 +49,14 @@ export class AdminUserListComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         
-        this.usuarioSrv.deleteUsuario(idUser).subscribe(
+        this.usuarioSrv.enableUsuario(idUser).subscribe(
           (resp) => {
             let element = this.showUsuarios.filter((e: any) => e.id == idUser)[0];
             this.showUsuarios.splice(this.showUsuarios.indexOf(element), 1)
 
             Swal.fire(
-              '¡Eliminado!',
-              'El usuario se ha eliminado con éxito',
+              '¡Restaurado!',
+              'El usuario se ha restaurado con éxito',
               'success'
             )
 

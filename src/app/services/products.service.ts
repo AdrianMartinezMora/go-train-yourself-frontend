@@ -13,13 +13,13 @@ export class ProductsService {
   getProducts(){
     return this.http.get(`${environment.apiUrl}/productos/`)
   }
+
+  getDisProducts(){
+    return this.http.get(`${environment.apiUrl}/productos/dis/`)
+  }
   
   getProductsbyCategoria(idCat: number){
     return this.http.get(`${environment.apiUrl}/productos/catMenu/${idCat}`)
-  }
-
-  getProductsbySearch(search: string){
-    return this.http.get(`${environment.apiUrl}/productos/search/${search}`)
   }
 
   getProduct(id:number){
@@ -28,6 +28,10 @@ export class ProductsService {
 
   deleteProduct(id:number){
     return this.http.delete(`${environment.apiUrl}/productos/${id}`)
+  }
+
+  enableProduct(id:number){
+    return this.http.delete(`${environment.apiUrl}/productos/dis/${id}`)
   }
 
   updateProduct(id:number, updatedProduct:Product) {

@@ -3,6 +3,7 @@
 
 <div style="width: 13%; float: left;">
     <div class="card" *ngFor="let detalle of pedido.detalle;" style="height: 150px;">
+        <button class="btnDel" (click)="eliminar(detalle.idProducto)">x</button>
         <img src="{{imageUrl + productos[detalle.idProducto].foto}}" width="100%" height="100%" [routerLink]="'/productos/detalle/'+productos[detalle.idProducto].id">
     </div>
 </div>

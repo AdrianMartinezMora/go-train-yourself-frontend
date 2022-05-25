@@ -59,7 +59,7 @@ export class ProdListComponent implements OnInit {
       Swal.fire({
         position: 'center',
         icon: 'success',
-        title: 'El producto se a añadido al carrito',
+        title: 'El producto se ha añadido al carrito',
         showConfirmButton: false,
         timer: 1500
       })

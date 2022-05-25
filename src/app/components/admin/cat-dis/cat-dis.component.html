@@ -9,7 +9,7 @@
             <div class="col-md-8 col-lg-6">
                 <div class="header">
                     <h3>Go Train Yourself</h3>
-                    <h2>Categorías</h2>
+                    <h2>Categorias Deshabilitadas</h2>
                 </div>
             </div>
         </div>
@@ -17,15 +17,16 @@
             <div *ngFor="let categoria of showCategorias" class="col-md-6 col-lg-4 col-xl-3">
                 <div class="single-product" style="text-align: center;">
                     <div class="part-1">
-                        <img src="{{imageUrl + categoria.foto}}" height="300" (click)="goProdCat(categoria.id)">
+                        <img src="{{imageUrl + categoria.foto}}" height="250">
+                        <ul style="padding-bottom: 15px ;">
+                            <li style="margin-right:105px ; padding-left: 10px;">
+                                <button type="button" class="btn btn-success" title="modificar" (click)="enableCat(categoria.id)">
+                                    <i class="fa-solid fa-square-check"></i>
+                                </button>
+                            </li>
+                        </ul>
                     </div>
-                </div>
-            </div>
-            <div class="col-md-6 col-lg-4 col-xl-3">
-                <div class="single-product" style="text-align: center;">
-                    <div class="part-1">
-                        <img src="{{imageUrl + 'todos.png'}}" height="300" routerLink="/productos">
-                    </div>
+                    <label>{{categoria.nombre}}</label>
                 </div>
             </div>
         </div>

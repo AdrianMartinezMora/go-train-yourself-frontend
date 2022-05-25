@@ -15,21 +15,27 @@ export class AdminOrderListComponent implements OnInit {
 
   pedidos:any[]=[];
   pedidosMostrar:any[]=[]
-  usuario;
+  usuarios:Usuario[]=[];
+  usuario:Usuario;
 
   constructor(
     private userSrv: UsuariosService,
     private pedidosSrv: PedidosService) { }
 
   ngOnInit(): void {
-    this.pedidosSrv.getPedidos().subscribe(
-      (res:Pedido[]) => {
-        this.pedidos = res
-        for (let i = 0; i < this.pedidos.length; i++) {
-          let date=this.pedidos[i].fechaPedido.toString().split("-");
-          date=date[2].split("T")[0] + "/" +date[1] + "/" + date[0]
-          this.userSrv.getUsuario(this.pedidos[i].idUsuario).subscribe(res => {
-            this.usuario=res[0] 
+
+
+    this.userSrv.getUsuarios().subscribe((res:Usuario[]) => {
+      this.usuarios=res
+      this.pedidosSrv.getPedidos().subscribe(
+        (res:Pedido[]) => {
+          this.pedidos = res
+          console.log(this.pedidos);
+          
+          for (let i = 0; i < this.pedidos.length; i++) {
+            let date=this.pedidos[i].fechaPedido.toString().split("-");
+            date=date[2].split("T")[0] + "/" +date[1] + "/" + date[0]
+            this.usuario = this.usuarios.find(usu => usu.id==this.pedidos[i].idUsuario)
             let ped={
               id:this.pedidos[i].id,
               usuario:this.usuario.nombreUsuario,
@@ -37,10 +43,12 @@ export class AdminOrderListComponent implements OnInit {
               precioTotal:this.pedidos[i].precioTotal,
             }
             this.pedidosMostrar.push(ped)
-            }
-          )
-        }
-      })
+            
+            
+          }
+        })
+      }
+    )
   }
 
 }

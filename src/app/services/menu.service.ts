@@ -28,13 +28,30 @@ export class MenuService {
           name: "Crear Producto",
           link: "/admin/productos/add",
           visible: true
+        },
+        {
+          name: "Reponer Productos",
+          link: "/admin/prodDis",
+          visible: true
         }
       ]
     },
     {
       name: "Usuarios",
-      link: '/admin/userlist',
+      link: '',
       visible: false,
+      children: [
+        {
+          name: "Ver todos",
+          link: "/admin/userlist",
+          visible: true
+        },
+        {
+          name: "Reponer Usuarios",
+          link: "/admin/userDis",
+          visible: true
+        }
+      ]
     },
     {
       name: "Categorías",
@@ -49,6 +66,11 @@ export class MenuService {
         {
           name: "Crear Categoría",
           link: "/admin/categorias/add",
+          visible: true
+        },
+        {
+          name: "Reponer Categorias",
+          link: "/admin/catDis",
           visible: true
         }
       ]
@@ -74,7 +96,7 @@ export class MenuService {
       });
 
       finalMenu.push({
-        name: 'Otras categorias', 
+        name: 'Otras categorías', 
         visible: false,
         link: '',
         children: secundarias

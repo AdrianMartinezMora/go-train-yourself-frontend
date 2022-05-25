@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(f: NgForm){
-    this.accountSrv.login(f.value.username, f.value.password).subscribe(res => {this.router.navigate(['/productos'])}, err => this.badUser=true);
+    this.accountSrv.login(f.value.username, f.value.password).subscribe(res => {this.router.navigate(['/'])}, err => this.badUser=true);
   }
 
 }
